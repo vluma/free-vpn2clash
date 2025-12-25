@@ -23,22 +23,30 @@ jobs:
         with:
           python-version: '3.12'
       
-      # 3. 安装依赖
+      # 3. 创建输出目录
+      - name: Create output directory
+        run: mkdir -p output
+      
+      # 4. 安装依赖
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
       
-      # 4. 运行主脚本更新配置
+      # 5. 运行主脚本更新配置
       - name: Update clash config
         run: python -m src.main
       
-      # 5. 检查是否有更改
+      # 6. 检查是否有更改
       - name: Check for changes
-        run: git status
-      
-      # 6. 提交和推送更新
+        id: check_changes
+        run: |
+          git status
+          git diff --exit-code output/clash_config.yaml || echo "has_changes=true" >> $GITHUB_OUTPUT
+        
+      # 7. 提交和推送更新
       - name: Commit and push changes
+        if: steps.check_changes.outputs.has_changes == 'true'
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
