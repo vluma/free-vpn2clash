@@ -1,0 +1,55 @@
+# 代理节点源配置
+ssr_source:
+  # 要获取节点的URL列表
+  urls:
+    - https://github.com/Alvin9999-newpac/fanqiang/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7
+    - https://github.com/junjun266/FreeProxyGo
+  # HTTP请求超时时间（秒）
+  request_timeout: 30
+  # 自定义User-Agent
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+
+# 输出配置
+output:
+  # 输出目录
+  directory: "./output"
+  # Clash配置文件名
+  clash_config_file: "clash_config.yaml"
+
+# Clash配置模板
+clash:
+  # 端口配置
+  port: 7890
+  socks_port: 7891
+  # 是否允许局域网访问
+  allow_lan: true
+  # 模式：Rule, Global, Direct
+  mode: "Rule"
+  # 日志级别：debug, info, warning, error
+  log_level: "info"
+  # 外部控制器端口
+  external_controller: "127.0.0.1:9090"
+  # 外部控制器密钥
+  secret: ""
+  # DNS配置
+  dns:
+    enable: true
+    listen: "0.0.0.0:53"
+    enhanced_mode: "fake-ip"
+    nameserver: ["114.114.114.114", "8.8.8.8"]
+  # 规则配置
+  rules:
+    - "DOMAIN-SUFFIX,google.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,facebook.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,youtube.com,FREE-PROXY"
+    - "GEOIP,CN,DIRECT"
+    - "MATCH,FREE-PROXY"
+
+# Clash Verge配置
+clash_verge:
+  # Clash Verge配置目录
+  config_directory: ""
+  # 是否自动重启Clash Verge
+  auto_restart: false
+  # 重启超时时间（秒）
+  restart_timeout: 5

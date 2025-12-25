@@ -1,0 +1,54 @@
+name: Update Clash Config
+
+on:
+  # 每天UTC时间0点运行（北京时间8点）
+  schedule:
+    - cron: '0 0 * * *'
+  # 允许手动触发
+  workflow_dispatch:
+
+jobs:
+  update-config:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 检出代码
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      # 2. 设置Python环境
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+      
+      # 3. 安装依赖
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      # 4. 运行主脚本更新配置
+      - name: Update clash config
+        run: python -m src.main
+      
+      # 5. 检查是否有更改
+      - name: Check for changes
+        run: git status
+      
+      # 6. 提交和推送更新
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add output/clash_config.yaml
+          git commit -m 'Update Clash config file'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      # 7. 输出订阅链接信息
+      - name: Output subscription info
+        run: echo "Updated clash_config.yaml is available at: ${{ github.server_url }}/${{ github.repository }}/raw/main/output/clash_config.yaml"
