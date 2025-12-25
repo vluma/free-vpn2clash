@@ -42,7 +42,21 @@ jobs:
         id: check_changes
         run: |
           git status
-          git diff --exit-code output/clash_config.yaml || echo "has_changes=true" >> $GITHUB_OUTPUT
+          # 检查文件是否存在
+          if [ ! -f output/clash_config.yaml ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "文件 output/clash_config.yaml 不存在，需要创建"
+          else
+            # 检查文件是否有更改
+            git diff --exit-code output/clash_config.yaml
+            if [ $? -eq 1 ]; then
+              echo "has_changes=true" >> $GITHUB_OUTPUT
+              echo "文件 output/clash_config.yaml 有更改"
+            else
+              echo "has_changes=false" >> $GITHUB_OUTPUT
+              echo "文件 output/clash_config.yaml 没有更改"
+            fi
+          fi
         
       # 7. 提交和推送更新
       - name: Commit and push changes
