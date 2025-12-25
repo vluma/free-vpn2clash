@@ -51,4 +51,4 @@ jobs:
       
       # 7. 输出订阅链接信息
       - name: Output subscription info
-        run: echo "Updated clash_config.yaml is available at: ${{ github.server_url }}/${{ github.repository }}/raw/main/output/clash_config.yaml"
+        run: echo 'Updated clash_config.yaml is available at: ${{ github.server_url }}/${{ github.repository }}/raw/main/output/clash_config.yaml'
