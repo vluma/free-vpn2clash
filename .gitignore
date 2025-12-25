@@ -3,11 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Output directory
-output/
-# But keep the clash config file
-!output/clash_config.yaml
-
 # Environment variables
 .env
 .env.local
@@ -31,3 +26,7 @@ logs/
 # Temporary files
 *.tmp
 *.temp
+
+# Output directory (ignore all files except clash_config.yaml)
+output/*
+!output/clash_config.yaml
