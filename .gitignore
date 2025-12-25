@@ -26,7 +26,3 @@ logs/
 # Temporary files
 *.tmp
 *.temp
-
-# Output directory (ignore all files except clash_config.yaml)
-output/*
-!output/clash_config.yaml
