@@ -7,7 +7,6 @@
 - 从多个源URL获取免费代理节点（SSR、VMess、VLESS、SS协议）
 - 自动生成Clash配置文件（output/clash_config.yaml）
 - 支持代理节点去重和命名唯一化
-- 将PROXY分组重命名为FREE-PROXY并置于最上方
 - 配置文件驱动，支持自定义源URL和规则
 
 ## 项目结构
