@@ -1,6 +1,6 @@
-# free-vpn-clash-updater
+# free-vpn2clash
 
-一个纯Python编写的Clash VPN配置自动更新工具，基于free-clash-auto-updater的逻辑，支持从多个源获取免费代理节点并生成Clash配置文件。
+从多个源获取免费代理节点并生成Clash配置文件，支持订阅。
 
 ## 功能特性
 
@@ -13,7 +13,7 @@
 ## 项目结构
 
 ```
-free-vpn-clash-updater/
+free-vpn2clash/
 ├── config/              # 配置文件目录
 │   └── config.yaml      # 主配置文件
 ├── output/              # 输出目录
@@ -50,6 +50,17 @@ https://raw.githubusercontent.com/vluma/free-vpn2clash/refs/heads/main/output/cl
 ```
 
 将此链接添加到Clash客户端中即可自动获取最新的免费代理节点配置。
+
+## 推荐软件
+PC 端推荐 *[**Clash Verge**](https://www.clashverge.dev/install.html)* ，支持 **Windows、Linux、macOS**
+
+Android 端推荐 *[**ClashMetaForAndroid**](https://github.com/MetaCubeX/ClashMetaForAndroid/releases)* ，支持 **Android**
+
+iOS 端推荐 **Shadowrocket** 从 **Apple Store** 下载（需付费），支持 **iOS**，需要美国账号。
+
+鸿蒙端推荐 *[**ClashBox**](https://github.com/xiaobaigroup/ClashBox/releases)* ，支持 **HarmonyOS**
+
+
 
 ## 配置说明
 
