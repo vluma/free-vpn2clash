@@ -1,5 +1,4 @@
 import base64
-import re
 import yaml
 import os
 import sys
@@ -714,14 +713,58 @@ class SSRConverter:
         # 处理网络类型
         network_type = params.get('type', params.get('net', 'tcp'))
         
-        # 构造Clash代理配置 - 确保名称唯一
-        base_name = params.get('remarks', 'VLESS')
-        # 使用UUID的前8位和网络类型确保名称唯一
-        proxy_name = f"{base_name}_{server}_{port}_{uuid_part[:8]}_{network_type}"
-        
         # 处理安全协议
         security = params.get('security', '').lower()
         tls_enabled = security in ['tls', 'reality', 'xtls'] or params.get('tls', '').lower() == 'true'
+        
+        # 确定servername（SNI）
+        servername = None
+        if tls_enabled:
+            if 'sni' in params:
+                servername = params['sni']
+        
+        # 构造Clash代理配置 - 确保名称唯一
+        base_name = params.get('remarks', 'VLESS')
+        # 生成基础名称
+        proxy_name = f"{base_name}_{server}_{port}_{uuid_part[:8]}_{network_type}"
+        
+        # 添加安全协议和servername信息
+        if tls_enabled:
+            # 添加servername（SNI）信息
+            if servername:
+                import hashlib
+                sni_hash = hashlib.md5(servername.encode()).hexdigest()[:6]
+                proxy_name += f"_{sni_hash}"
+        
+        # 添加网络特定配置信息以确保唯一性
+        if network_type == 'ws':
+            import hashlib
+            # 创建ws配置的唯一标识
+            ws_config_str = ""
+            if path_part:
+                ws_config_str += path_part
+            if 'host' in params:
+                ws_config_str += params['host']
+            # 生成哈希值以避免名称过长
+            if ws_config_str:
+                ws_hash = hashlib.md5(ws_config_str.encode()).hexdigest()[:6]
+                proxy_name += f"_{ws_hash}"
+        elif network_type == 'grpc':
+            # 添加grpc服务名称信息
+            service_name = params.get('serviceName', '')[:6]
+            if service_name:
+                proxy_name += f"_{service_name}"
+        elif network_type in ['h2', 'xhttp']:
+            # 添加h2或xhttp配置信息
+            import hashlib
+            http_config_str = ""
+            if path_part:
+                http_config_str += path_part
+            if 'host' in params:
+                http_config_str += params['host']
+            if http_config_str:
+                http_hash = hashlib.md5(http_config_str.encode()).hexdigest()[:6]
+                proxy_name += f"_{http_hash}"
         
         proxy = {
             "name": proxy_name,
@@ -737,8 +780,8 @@ class SSRConverter:
         
         # 处理TLS相关配置
         if tls_enabled:
-            if 'sni' in params:
-                proxy["servername"] = params['sni']
+            if servername:
+                proxy["servername"] = servername
             if 'alpn' in params:
                 proxy["alpn"] = params['alpn'].split(',')
             
