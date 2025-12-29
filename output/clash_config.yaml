@@ -11,6 +11,84 @@ log-level: info
 mode: Rule
 port: 7890
 proxies:
+- name: VLESS_104.21.31.40_443_e258977b_ws_a0a5ca_a0a5ca
+  network: ws
+  port: 443
+  server: 104.21.31.40
+  servername: sg.xmm9527.xyz
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: e258977b-e413-4718-a3af-02d75492c349
+  ws-opts:
+    headers:
+      Host: sg.xmm9527.xyz
+- name: VLESS_104.16.45.251_443_e258977b_ws_f1574f_f1574f
+  network: ws
+  port: 443
+  server: 104.16.45.251
+  servername: hk.xaniusnippets.qzz.io
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: e258977b-e413-4718-a3af-02d75492c349
+  ws-opts:
+    headers:
+      Host: hk.xaniusnippets.qzz.io
+- name: VLESS_104.16.63.129_443_e258977b_ws_a0a5ca_a0a5ca
+  network: ws
+  port: 443
+  server: 104.16.63.129
+  servername: sg.xmm9527.xyz
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: e258977b-e413-4718-a3af-02d75492c349
+  ws-opts:
+    headers:
+      Host: sg.xmm9527.xyz
+- name: VLESS_104.16.46.254_443_e258977b_ws_a0a5ca_a0a5ca
+  network: ws
+  port: 443
+  server: 104.16.46.254
+  servername: sg.xmm9527.xyz
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: e258977b-e413-4718-a3af-02d75492c349
+  ws-opts:
+    headers:
+      Host: sg.xmm9527.xyz
+- name: VLESS_104.16.63.129_443_e258977b_ws_4a1a3f_4a1a3f
+  network: ws
+  port: 443
+  server: 104.16.63.129
+  servername: tw.xmm9527.xyz
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: e258977b-e413-4718-a3af-02d75492c349
+  ws-opts:
+    headers:
+      Host: tw.xmm9527.xyz
+- name: VLESS_104.16.62.80_443_e258977b_ws_f1574f_f1574f
+  network: ws
+  port: 443
+  server: 104.16.62.80
+  servername: hk.xaniusnippets.qzz.io
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: e258977b-e413-4718-a3af-02d75492c349
+  ws-opts:
+    headers:
+      Host: hk.xaniusnippets.qzz.io
 - alterId: 0
   cipher: auto
   name: VMESS节点2-ipv6_2001:bc8:32d7:2013::8_62211_e1786d49_ws_5723d2
@@ -31,7 +109,7 @@ proxies:
     method: GET
     path:
     - /
-  name: VLESS_62.210.8.152_18877_3fb38b37_xhttp
+  name: VLESS_62.210.8.152_18877_3fb38b37_xhttp_acfc23
   network: http
   port: 18877
   reality-opts:
@@ -44,125 +122,48 @@ proxies:
   type: vless
   udp: false
   uuid: 3fb38b37-c636-44d3-ab0c-897fab438bf1
-- name: VLESS_104.16.46.254_443_e258977b_ws
-  network: ws
-  port: 443
-  server: 104.16.46.254
-  servername: sg.xmm9527.xyz
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: e258977b-e413-4718-a3af-02d75492c349
-  ws-opts:
-    headers:
-      Host: sg.xmm9527.xyz
-- name: VLESS_104.21.31.40_443_e258977b_ws
-  network: ws
-  port: 443
-  server: 104.21.31.40
-  servername: sg.xmm9527.xyz
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: e258977b-e413-4718-a3af-02d75492c349
-  ws-opts:
-    headers:
-      Host: sg.xmm9527.xyz
-- name: VLESS_104.16.45.251_443_e258977b_ws
-  network: ws
-  port: 443
-  server: 104.16.45.251
-  servername: hk.xaniusnippets.qzz.io
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: e258977b-e413-4718-a3af-02d75492c349
-  ws-opts:
-    headers:
-      Host: hk.xaniusnippets.qzz.io
-- name: VLESS_104.16.63.129_443_e258977b_ws
-  network: ws
-  port: 443
-  server: 104.16.63.129
-  servername: sg.xmm9527.xyz
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: e258977b-e413-4718-a3af-02d75492c349
-  ws-opts:
-    headers:
-      Host: sg.xmm9527.xyz
-- name: VLESS_104.16.63.129_443_e258977b_ws
-  network: ws
-  port: 443
-  server: 104.16.63.129
-  servername: tw.xmm9527.xyz
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: e258977b-e413-4718-a3af-02d75492c349
-  ws-opts:
-    headers:
-      Host: tw.xmm9527.xyz
-- name: VLESS_104.16.62.80_443_e258977b_ws
-  network: ws
-  port: 443
-  server: 104.16.62.80
-  servername: hk.xaniusnippets.qzz.io
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: e258977b-e413-4718-a3af-02d75492c349
-  ws-opts:
-    headers:
-      Host: hk.xaniusnippets.qzz.io
 proxy-groups:
 - name: FREE-PROXY
   proxies:
   - AUTO-SWITCH
-  - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
+  - Github - Alvin9999-newpac/fanqiang
+  - VLESS_104.21.31.40_443_e258977b_ws_a0a5ca_a0a5ca
+  - VLESS_104.16.45.251_443_e258977b_ws_f1574f_f1574f
+  - VLESS_104.16.63.129_443_e258977b_ws_a0a5ca_a0a5ca
+  - VLESS_104.16.46.254_443_e258977b_ws_a0a5ca_a0a5ca
+  - VLESS_104.16.63.129_443_e258977b_ws_4a1a3f_4a1a3f
+  - VLESS_104.16.62.80_443_e258977b_ws_f1574f_f1574f
   - VMESS节点2-ipv6_2001:bc8:32d7:2013::8_62211_e1786d49_ws_5723d2
-  - VLESS_62.210.8.152_18877_3fb38b37_xhttp
-  - VLESS_104.16.46.254_443_e258977b_ws
-  - VLESS_104.21.31.40_443_e258977b_ws
-  - VLESS_104.16.45.251_443_e258977b_ws
-  - VLESS_104.16.63.129_443_e258977b_ws
-  - VLESS_104.16.62.80_443_e258977b_ws
+  - VLESS_62.210.8.152_18877_3fb38b37_xhttp_acfc23
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
+  - VLESS_104.21.31.40_443_e258977b_ws_a0a5ca_a0a5ca
+  - VLESS_104.16.45.251_443_e258977b_ws_f1574f_f1574f
+  - VLESS_104.16.63.129_443_e258977b_ws_a0a5ca_a0a5ca
+  - VLESS_104.16.46.254_443_e258977b_ws_a0a5ca_a0a5ca
+  - VLESS_104.16.63.129_443_e258977b_ws_4a1a3f_4a1a3f
+  - VLESS_104.16.62.80_443_e258977b_ws_f1574f_f1574f
   - VMESS节点2-ipv6_2001:bc8:32d7:2013::8_62211_e1786d49_ws_5723d2
-  - VLESS_62.210.8.152_18877_3fb38b37_xhttp
-  - VLESS_104.16.46.254_443_e258977b_ws
-  - VLESS_104.21.31.40_443_e258977b_ws
-  - VLESS_104.16.45.251_443_e258977b_ws
-  - VLESS_104.16.63.129_443_e258977b_ws
-  - VLESS_104.16.63.129_443_e258977b_ws
-  - VLESS_104.16.62.80_443_e258977b_ws
+  - VLESS_62.210.8.152_18877_3fb38b37_xhttp_acfc23
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
+- name: Github - junjun266/FreeProxyGo
+  proxies:
+  - VLESS_104.21.31.40_443_e258977b_ws_a0a5ca_a0a5ca
+  - VLESS_104.16.45.251_443_e258977b_ws_f1574f_f1574f
+  - VLESS_104.16.63.129_443_e258977b_ws_a0a5ca_a0a5ca
+  - VLESS_104.16.46.254_443_e258977b_ws_a0a5ca_a0a5ca
+  - VLESS_104.16.63.129_443_e258977b_ws_4a1a3f_4a1a3f
+  - VLESS_104.16.62.80_443_e258977b_ws_f1574f_f1574f
+  type: select
 - name: Github - Alvin9999-newpac/fanqiang
   proxies:
   - VMESS节点2-ipv6_2001:bc8:32d7:2013::8_62211_e1786d49_ws_5723d2
-  - VLESS_62.210.8.152_18877_3fb38b37_xhttp
-  type: select
-- name: Github - junjun266/FreeProxyGo
-  proxies:
-  - VLESS_104.16.46.254_443_e258977b_ws
-  - VLESS_104.21.31.40_443_e258977b_ws
-  - VLESS_104.16.45.251_443_e258977b_ws
-  - VLESS_104.16.63.129_443_e258977b_ws
-  - VLESS_104.16.63.129_443_e258977b_ws
-  - VLESS_104.16.62.80_443_e258977b_ws
+  - VLESS_62.210.8.152_18877_3fb38b37_xhttp_acfc23
   type: select
 rule-providers: {}
 rules:
