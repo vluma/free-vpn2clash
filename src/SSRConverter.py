@@ -240,6 +240,8 @@ class SSRConverter:
                     proxy = self._parse_vless_url(node_url, source_name)
                 elif node_url.startswith('hysteria2://'):
                     proxy = self._parse_hysteria2_url(node_url, source_name)
+                elif node_url.startswith('trojan://'):
+                    proxy = self._parse_trojan_url(node_url, source_name)
                 else:
                     raise ValueError(f"不支持的节点类型: {node_url[:20]}...")
                 
@@ -679,6 +681,24 @@ class SSRConverter:
             if proxy.get('obfs-password'):
                 hysteria2_key += f"_{proxy['obfs-password']}"
             return hysteria2_key
+        elif proxy['type'] == 'trojan':
+            # 对trojan类型，添加更多属性来区分不同节点
+            trojan_key = f"{base_key}_{proxy.get('password', '')}"
+            # 添加TLS相关信息
+            if proxy.get('servername'):
+                trojan_key += f"_{proxy['servername']}"
+            if proxy.get('alpn'):
+                alpn = '_'.join(proxy['alpn']) if isinstance(proxy['alpn'], list) else str(proxy['alpn'])
+                trojan_key += f"_{alpn}"
+            # 添加网络特定配置
+            network = proxy.get('network', '')
+            if network == 'ws' and 'ws-opts' in proxy:
+                ws_opts = proxy['ws-opts']
+                if 'path' in ws_opts:
+                    trojan_key += f"_{ws_opts['path']}"
+                if 'headers' in ws_opts and 'Host' in ws_opts['headers']:
+                    trojan_key += f"_{ws_opts['headers']['Host']}"
+            return trojan_key
         else:
             return base_key
     
@@ -990,6 +1010,91 @@ class SSRConverter:
         
         if 'obfs-password' in params:
             proxy["obfs-password"] = params['obfs-password']
+        
+        return proxy
+    
+    def _parse_trojan_url(self, trojan_url, source_name=""):
+        """
+        解析Trojan URL并转换为Clash代理配置
+        
+        Args:
+            trojan_url (str): Trojan URL
+            source_name (str): 来源名称
+            
+        Returns:
+            dict: Clash代理配置
+        """
+        if not trojan_url.startswith('trojan://'):
+            raise ValueError("不是有效的Trojan URL")
+        
+        # 去掉前缀
+        url_part = trojan_url[9:]
+        
+        if '@' not in url_part:
+            raise ValueError("Trojan URL格式错误，缺少@符号")
+        
+        # 解析密码和服务器端口部分
+        password_part, server_part = url_part.split('@', 1)
+        
+        # 解析服务器和端口
+        if ':' not in server_part:
+            raise ValueError("Trojan URL格式错误，服务器部分缺少端口")
+        
+        # 处理可能包含路径或参数的服务器部分
+        server_port_path, params_part = server_part.split('?', 1) if '?' in server_part else (server_part, '')
+        
+        # 处理URL中的片段部分（#后面的内容）
+        fragment_part = ''
+        if '#' in server_port_path:
+            server_port_path, fragment_part = server_port_path.split('#', 1)
+        
+        server, port_str = server_port_path.rsplit(':', 1)
+        port = int(port_str)
+        
+        # 解析参数字符串
+        params = {}
+        if params_part:
+            for param in params_part.split('&'):
+                if '=' in param:
+                    key, value = param.split('=', 1)
+                    params[key] = value
+        
+        # 构造Clash代理配置 - 确保名称唯一
+        # 优先使用URL片段作为备注
+        if fragment_part:
+            base_name = fragment_part
+        else:
+            base_name = params.get('remarks', 'Trojan')
+        # 使用_process_proxy_name方法处理节点名称
+        proxy_name = self._process_proxy_name(base_name, source_name)
+        
+        proxy = {
+            "name": proxy_name,
+            "type": "trojan",
+            "server": server,
+            "port": port,
+            "password": password_part,
+            "skip-cert-verify": params.get('insecure', '').lower() == '1' or params.get('insecure', '').lower() == 'true',
+            "udp": params.get('udp', '').lower() == 'true'
+        }
+        
+        # 处理TLS相关配置
+        if 'sni' in params:
+            proxy["servername"] = params['sni']
+        
+        if 'alpn' in params:
+            proxy["alpn"] = params['alpn'].split(',')
+        
+        # 处理网络类型特定的配置
+        if 'type' in params:
+            network_type = params['type'].lower()
+            if network_type == 'ws':
+                proxy["network"] = 'ws'
+                proxy["ws-opts"] = {}
+                if 'path' in params:
+                    proxy["ws-opts"]["path"] = params['path']
+                if 'host' in params:
+                    proxy["ws-opts"]["headers"] = {"Host": params['host']}
         
         return proxy
     
