@@ -60,7 +60,7 @@ class ConfigManager:
             },
             "output": {
                 "directory": "./output",
-                "clash_config_file": "clash_config.yaml"
+                "clash_config_file": "FreeVPN.yaml"
             },
             "clash": {
                 "port": 7890,
@@ -114,6 +114,49 @@ class ConfigManager:
 class SSRConverter:
     def __init__(self):
         self.config_manager = ConfigManager()
+        # 国家代码到国旗图标的映射
+        self.country_flag_map = {
+            'US': '🇺🇸',  # 美国
+            'CN': '🇨🇳',  # 中国
+            'HK': '🇭🇰',  # 中国香港
+            'TW': '🇹🇼',  # 中国台湾
+            'JP': '🇯🇵',  # 日本
+            'KR': '🇰🇷',  # 韩国
+            'SG': '🇸🇬',  # 新加坡
+            'MY': '🇲🇾',  # 马来西亚
+            'TH': '🇹🇭',  # 泰国
+            'VN': '🇻🇳',  # 越南
+            'IN': '🇮🇳',  # 印度
+            'DE': '🇩🇪',  # 德国
+            'UK': '🇬🇧',  # 英国
+            'FR': '🇫🇷',  # 法国
+            'IT': '🇮🇹',  # 意大利
+            'ES': '🇪🇸',  # 西班牙
+            'NL': '🇳🇱',  # 荷兰
+            'BE': '🇧🇪',  # 比利时
+            'LU': '🇱🇺',  # 卢森堡
+            'CH': '🇨🇭',  # 瑞士
+            'AT': '🇦🇹',  # 奥地利
+            'SE': '🇸🇪',  # 瑞典
+            'NO': '🇳🇴',  # 挪威
+            'DK': '🇩🇰',  # 丹麦
+            'FI': '🇫🇮',  # 芬兰
+            'PL': '🇵🇱',  # 波兰
+            'CA': '🇨🇦',  # 加拿大
+            'AU': '🇦🇺',  # 澳大利亚
+            'NZ': '🇳🇿',  # 新西兰
+            'BR': '🇧🇷',  # 巴西
+            'AR': '🇦🇷',  # 阿根廷
+            'RU': '🇷🇺',  # 俄罗斯
+            'ID': '🇮🇩',  # 印度尼西亚
+            'PH': '🇵🇭',  # 菲律宾
+            'IL': '🇮🇱',  # 以色列
+            'AE': '🇦🇪',  # 阿联酋
+            'SA': '🇸🇦',  # 沙特阿拉伯
+            'ZA': '🇿🇦',  # 南非
+        }
+        # 用于跟踪已使用的节点名称，确保唯一性
+        self.name_counter = {}
     
     def convert_ssr_nodes_to_clash_config(self, ssr_nodes, config_file=None, output_file=None):
         """
@@ -134,6 +177,8 @@ class SSRConverter:
         config = self.config_manager.load_configuration(config_file)
         clash_config = config.get("clash", {})
         clash_config = {
+                "name": "free-VPN",
+                "alias": "free-VPN", 
             "port": clash_config.get("port", 7890),
             "socks-port": clash_config.get("socks_port", 7891),
             "allow-lan": clash_config.get("allow_lan", True),
@@ -176,14 +221,25 @@ class SSRConverter:
                     node_url = node_item
                     source_url = "未知来源"
                 
+                # 生成来源名称
+                source_name = self._clean_source_url_for_group_name(source_url)
+                # 简化来源名称，只保留最后部分
+                if '-' in source_name:
+                    source_name = source_name.split('-')[-1].strip()
+                # 对于GitHub来源，只保留仓库名称的最后一部分
+                if '/' in source_name:
+                    source_name = source_name.split('/')[-1].strip()
+                
                 if node_url.startswith('ssr://'):
-                    proxy = self._parse_ssr_url(node_url)
+                    proxy = self._parse_ssr_url(node_url, source_name)
                 elif node_url.startswith('vmess://'):
-                    proxy = self._parse_vmess_url(node_url)
+                    proxy = self._parse_vmess_url(node_url, source_name)
                 elif node_url.startswith('ss://'):
-                    proxy = self._parse_ss_url(node_url)
+                    proxy = self._parse_ss_url(node_url, source_name)
                 elif node_url.startswith('vless://'):
-                    proxy = self._parse_vless_url(node_url)
+                    proxy = self._parse_vless_url(node_url, source_name)
+                elif node_url.startswith('hysteria2://'):
+                    proxy = self._parse_hysteria2_url(node_url, source_name)
                 else:
                     raise ValueError(f"不支持的节点类型: {node_url[:20]}...")
                 
@@ -323,7 +379,7 @@ class SSRConverter:
         
         return clash_config
     
-    def _parse_ssr_url(self, ssr_url):
+    def _parse_ssr_url(self, ssr_url, source_name=""):
         """
         解析SSR URL并转换为Clash代理配置
         
@@ -392,8 +448,8 @@ class SSRConverter:
         
         # 构造Clash代理配置 - 确保名称唯一
         base_name = params.get('remarks', 'SSR')
-        # 使用协议、加密方式、混淆类型和密码的前8位确保名称唯一
-        proxy_name = f"{base_name}_{server}_{port}_{protocol[:3]}_{method[:3]}_{obfs[:3]}_{password[:8]}"
+        # 使用_process_proxy_name方法处理节点名称
+        proxy_name = self._process_proxy_name(base_name, source_name)
         
         proxy = {
             "name": proxy_name,
@@ -418,7 +474,7 @@ class SSRConverter:
         
         return proxy
     
-    def _parse_vmess_url(self, vmess_url):
+    def _parse_vmess_url(self, vmess_url, source_name=""):
         """
         解析VMess URL并转换为Clash代理配置
         
@@ -446,27 +502,8 @@ class SSRConverter:
         
         # 构造Clash代理配置 - 确保名称唯一
         base_name = vmess_config.get("ps", "VMess")
-        server = vmess_config.get("add")
-        port = vmess_config.get("port")
-        uuid = vmess_config.get("id", "")
-        network = vmess_config.get("net", "tcp")
-        
-        # 生成ws-opts的唯一标识部分（如果有）
-        ws_unique_part = ""
-        if network == "ws":
-            import hashlib
-            # 创建一个基础字符串包含所有ws相关配置
-            ws_config_str = ""
-            if "path" in vmess_config and vmess_config["path"]:
-                ws_config_str += vmess_config["path"]
-            if "host" in vmess_config and vmess_config["host"]:
-                ws_config_str += vmess_config["host"]
-            # 如果有ws配置，生成哈希；如果没有ws配置，也生成一个独特的哈希值
-            ws_hash = hashlib.md5(ws_config_str.encode()).hexdigest()[:6]
-            ws_unique_part = f"_{ws_hash}"
-        
-        # 使用UUID的前8位、网络类型和ws-opts标识确保名称唯一
-        proxy_name = f"{base_name}_{server}_{port}_{uuid[:8]}_{network}{ws_unique_part}"
+        # 使用_process_proxy_name方法处理节点名称
+        proxy_name = self._process_proxy_name(base_name, source_name)
         
         proxy = {
             "name": proxy_name,
@@ -496,7 +533,7 @@ class SSRConverter:
         
         return proxy
     
-    def _parse_ss_url(self, ss_url):
+    def _parse_ss_url(self, ss_url, source_name=""):
         """
         解析SS URL并转换为Clash代理配置
         
@@ -549,8 +586,10 @@ class SSRConverter:
             raise ValueError(f"解析SS URL认证部分失败: {str(e)}")
         
         # 构造Clash代理配置 - 确保名称唯一
-        # 使用加密方式和密码的前8位确保名称唯一
-        proxy_name = f"SS_{server}_{port}_{method[:5]}_{password[:8]}"
+        # SS URL通常没有备注信息，使用协议名称作为基础名称
+        base_name = "SS"
+        # 使用_process_proxy_name方法处理节点名称
+        proxy_name = self._process_proxy_name(base_name, source_name)
         proxy = {
             "name": proxy_name,
             "type": "ss",
@@ -617,6 +656,29 @@ class SSRConverter:
                 if 'method' in http_opts:
                     vless_key += f"_{http_opts['method']}"
             return vless_key
+        elif proxy['type'] == 'hysteria2':
+            # 对hysteria2类型，添加更多属性来区分不同节点
+            hysteria2_key = f"{base_key}_{proxy.get('password', '')}"
+            # 添加TLS相关信息
+            if proxy.get('sni'):
+                hysteria2_key += f"_{proxy['sni']}"
+            if proxy.get('alpn'):
+                alpn = '_'.join(proxy['alpn']) if isinstance(proxy['alpn'], list) else str(proxy['alpn'])
+                hysteria2_key += f"_{alpn}"
+            # 添加速度限制信息
+            if proxy.get('up'):
+                hysteria2_key += f"_up{proxy['up']}"
+            if proxy.get('down'):
+                hysteria2_key += f"_down{proxy['down']}"
+            # 添加认证信息
+            if proxy.get('auth'):
+                hysteria2_key += f"_{proxy['auth']}"
+            # 添加混淆信息
+            if proxy.get('obfs'):
+                hysteria2_key += f"_{proxy['obfs']}"
+            if proxy.get('obfs-password'):
+                hysteria2_key += f"_{proxy['obfs-password']}"
+            return hysteria2_key
         else:
             return base_key
     
@@ -639,6 +701,8 @@ class SSRConverter:
             repo_name = github_match.group(2)
             # 移除可能的wiki路径
             repo_name = re.sub(r'/wiki.*$', '', repo_name)
+            # 只保留仓库名称的最后一部分（如果包含/）
+            repo_name = repo_name.split('/')[-1]
             return f"Github - {username}/{repo_name}"
         
         # 移除协议部分 (http://, https://)
@@ -664,7 +728,60 @@ class SSRConverter:
         
         return group_name
     
-    def _parse_vless_url(self, vless_url):
+    def _process_proxy_name(self, base_name, source_name=""):
+        """
+        处理代理节点名称，实现以下功能：
+        1. 将国家代码（如 NL、HK）替换为国旗图标
+        2. 清理名称中的冗余信息
+        3. 确保名称唯一性（添加数字后缀）
+        4. 添加来源信息（如 - fanqiang、- FreeProxyGo）
+        
+        Args:
+            base_name (str): 原始节点名称
+            source_name (str): 来源名称
+            
+        Returns:
+            str: 处理后的节点名称
+        """
+        import re
+        
+        # 1. 替换国家代码为国旗图标
+        processed_name = base_name
+        
+        # 匹配类似 "NL荷兰"、"HK中国香港" 等格式的国家代码
+        country_code_pattern = r'^(\w{2})([\u4e00-\u9fa5]+)'  # 匹配开头的两个字母和随后的中文
+        match = re.match(country_code_pattern, processed_name)
+        
+        if match:
+            country_code = match.group(1).upper()
+            if country_code in self.country_flag_map:
+                # 替换国家代码为国旗图标
+                country_name = match.group(2)
+                processed_name = f"{self.country_flag_map[country_code]}{country_name}"
+        
+        # 2. 清理名称中的冗余信息
+        # 移除可能的数字ID或其他多余标识
+        processed_name = re.sub(r'^\d+\s*-\s*', '', processed_name)  # 移除开头的数字和连字符
+        
+        # 3. 添加来源信息
+        if source_name:
+            processed_name = f"{processed_name} - {source_name}"
+        
+        # 4. 确保名称唯一性
+        if processed_name in self.name_counter:
+            self.name_counter[processed_name] += 1
+            processed_name = f"{processed_name}{self.name_counter[processed_name]}"
+        else:
+            self.name_counter[processed_name] = 0
+        
+        # 限制名称长度
+        max_length = 50
+        if len(processed_name) > max_length:
+            processed_name = processed_name[:max_length]
+        
+        return processed_name
+    
+    def _parse_vless_url(self, vless_url, source_name=""):
         """
         解析VLESS URL并转换为Clash代理配置
         
@@ -725,46 +842,8 @@ class SSRConverter:
         
         # 构造Clash代理配置 - 确保名称唯一
         base_name = params.get('remarks', 'VLESS')
-        # 生成基础名称
-        proxy_name = f"{base_name}_{server}_{port}_{uuid_part[:8]}_{network_type}"
-        
-        # 添加安全协议和servername信息
-        if tls_enabled:
-            # 添加servername（SNI）信息
-            if servername:
-                import hashlib
-                sni_hash = hashlib.md5(servername.encode()).hexdigest()[:6]
-                proxy_name += f"_{sni_hash}"
-        
-        # 添加网络特定配置信息以确保唯一性
-        if network_type == 'ws':
-            import hashlib
-            # 创建ws配置的唯一标识
-            ws_config_str = ""
-            if path_part:
-                ws_config_str += path_part
-            if 'host' in params:
-                ws_config_str += params['host']
-            # 生成哈希值以避免名称过长
-            if ws_config_str:
-                ws_hash = hashlib.md5(ws_config_str.encode()).hexdigest()[:6]
-                proxy_name += f"_{ws_hash}"
-        elif network_type == 'grpc':
-            # 添加grpc服务名称信息
-            service_name = params.get('serviceName', '')[:6]
-            if service_name:
-                proxy_name += f"_{service_name}"
-        elif network_type in ['h2', 'xhttp']:
-            # 添加h2或xhttp配置信息
-            import hashlib
-            http_config_str = ""
-            if path_part:
-                http_config_str += path_part
-            if 'host' in params:
-                http_config_str += params['host']
-            if http_config_str:
-                http_hash = hashlib.md5(http_config_str.encode()).hexdigest()[:6]
-                proxy_name += f"_{http_hash}"
+        # 使用_process_proxy_name方法处理节点名称
+        proxy_name = self._process_proxy_name(base_name, source_name)
         
         proxy = {
             "name": proxy_name,
@@ -819,6 +898,89 @@ class SSRConverter:
             }
             if 'host' in params:
                 proxy["http-opts"]["headers"] = {"Host": [params['host']]}
+        
+        return proxy
+    
+    def _parse_hysteria2_url(self, hysteria2_url, source_name=""):
+        """
+        解析Hysteria2 URL并转换为Clash代理配置
+        
+        Args:
+            hysteria2_url (str): Hysteria2 URL
+            source_name (str): 来源名称
+            
+        Returns:
+            dict: Clash代理配置
+        """
+        if not hysteria2_url.startswith('hysteria2://'):
+            raise ValueError("不是有效的Hysteria2 URL")
+        
+        # 去掉前缀
+        url_part = hysteria2_url[12:]
+        
+        if '@' not in url_part:
+            raise ValueError("Hysteria2 URL格式错误，缺少@符号")
+        
+        # 解析密码和服务器端口部分
+        password_part, server_part = url_part.split('@', 1)
+        
+        # 解析服务器和端口
+        if ':' not in server_part:
+            raise ValueError("Hysteria2 URL格式错误，服务器部分缺少端口")
+        
+        # 处理可能包含路径或参数的服务器部分
+        server_port_path, params_part = server_part.split('?', 1) if '?' in server_part else (server_part, '')
+        
+        server, port_str = server_port_path.rsplit(':', 1)
+        port = int(port_str)
+        
+        # 解析参数字符串
+        params = {}
+        if params_part:
+            for param in params_part.split('&'):
+                if '=' in param:
+                    key, value = param.split('=', 1)
+                    params[key] = value
+        
+        # 构造Clash代理配置 - 确保名称唯一
+        base_name = params.get('remarks', 'Hysteria2')
+        # 使用_process_proxy_name方法处理节点名称
+        proxy_name = self._process_proxy_name(base_name, source_name)
+        
+        proxy = {
+            "name": proxy_name,
+            "type": "hysteria2",
+            "server": server,
+            "port": port,
+            "password": password_part,
+            "insecure": params.get('insecure', '').lower() == '1' or params.get('insecure', '').lower() == 'true',
+            "udp": params.get('udp', '').lower() == 'true'
+        }
+        
+        # 处理TLS相关配置
+        if 'sni' in params:
+            proxy["sni"] = params['sni']
+        
+        if 'alpn' in params:
+            proxy["alpn"] = params['alpn'].split(',')
+        
+        # 处理速度限制
+        if 'upmbps' in params:
+            proxy["up"] = float(params['upmbps'])
+        
+        if 'downmbps' in params:
+            proxy["down"] = float(params['downmbps'])
+        
+        # 处理认证
+        if 'auth' in params:
+            proxy["auth"] = params['auth']
+        
+        # 处理混淆配置
+        if 'obfs' in params:
+            proxy["obfs"] = params['obfs']
+        
+        if 'obfs-password' in params:
+            proxy["obfs-password"] = params['obfs-password']
         
         return proxy
     

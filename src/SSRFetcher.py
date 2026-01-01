@@ -224,7 +224,7 @@ class SSRFetcher:
                 ssr_nodes = []
                 raw_text = soup.get_text()
                 clean_text = " ".join(raw_text.split())
-                proxy_protocols = ['ssr://', 'vmess://', 'vless://', 'ss://']
+                proxy_protocols = ['ssr://', 'vmess://', 'vless://', 'ss://', 'hysteria2://']
 
                 print(f"开始解析URL {url} 的HTML内容")
                 # 检查解析后的内容是否包含代理节点
@@ -269,7 +269,7 @@ class SSRFetcher:
                 links = soup.find_all('a')
                 for link in links:
                     href = link.get('href')
-                    if href and (href.startswith('ssr://') or href.startswith('vmess://') or href.startswith('vless://') or href.startswith('ss://')):
+                    if href and (href.startswith('ssr://') or href.startswith('vmess://') or href.startswith('vless://') or href.startswith('ss://') or href.startswith('hysteria2://')):
                         ssr_nodes.append(href)
                 
                 # 3. 查找所有段落文本
@@ -382,7 +382,7 @@ class SSRFetcher:
                             response_body = response.text()
                             
                             # 检查响应内容是否包含代理节点
-                            if any(proxy_type in response_body for proxy_type in ['ssr://', 'vmess://', 'vless://', 'ss://']):
+                            if any(proxy_type in response_body for proxy_type in ['ssr://', 'vmess://', 'vless://', 'ss://', 'hysteria2://']):
                                 print(f"响应 {request.url} 中检测到代理节点")
                                 api_responses_with_proxies.append({
                                     'url': request.url,
@@ -481,7 +481,7 @@ class SSRFetcher:
                         
                         # 提取所有代理节点，使用与_extract_ssr_nodes_from_text相同的正则表达式
                         import re
-                        matches = re.findall(r'(?:ssr|vmess|vless|ss)://[^\s\n\r]*?(?=(?:ssr|vmess|vless|ss)://|$)', body)
+                        matches = re.findall(r'(?:ssr|vmess|vless|ss|hysteria2)://[^\s\n\r]*?(?=(?:ssr|vmess|vless|ss)://|$)', body)
                         
                         if matches:
                             print(f"从响应 {url} 中提取到 {len(matches)} 个代理节点")
@@ -492,11 +492,13 @@ class SSRFetcher:
                     print(f"从API响应中提取到 {len(api_proxy_nodes)} 个唯一代理节点")
                     
                     # 创建包含API响应中代理节点的HTML
-                    html_content = f"<html><body><pre>{'\n'.join(api_proxy_nodes)}</pre></body></html>"
+                    newline = '\n'
+                    html_content = f"<html><body><pre>{newline.join(api_proxy_nodes)}</pre></body></html>"
                     print("已创建包含API响应中代理节点的HTML内容，方便后续处理")
                 elif proxy_nodes:
                     # 如果直接从页面中获取到了代理节点，创建包含这些节点的HTML
-                    html_content = f"<html><body><pre>{'\n'.join(proxy_nodes)}</pre></body></html>"
+                    newline = '\n'
+                    html_content = f"<html><body><pre>{newline.join(proxy_nodes)}</pre></body></html>"
                     print("已创建包含页面代理节点的HTML内容")
                 else:
                     # 继续尝试获取完整HTML
@@ -544,8 +546,8 @@ class SSRFetcher:
             text (str): 要提取的文本
             nodes_array (list): 存储提取的节点的数组
         """
-        # 正则表达式匹配ssr://、vmess://、vless://和ss://开头的链接，直到遇到另一个代理协议开头或空格、换行符
-        ssr_vmess_regex = r'(?:ssr|vmess|vless|ss)://[^\s\n\r]*?(?=(?:ssr|vmess|vless|ss)://|$)'
+        # 正则表达式匹配ssr://、vmess://、vless://、ss://和hysteria2://开头的链接，直到遇到另一个代理协议开头或空格、换行符
+        ssr_vmess_regex = r'(?:ssr|vmess|vless|ss|hysteria2)://[^\s\n\r]*?(?=(?:ssr|vmess|vless|ss|hysteria2)://|$)'
         matches = re.findall(ssr_vmess_regex, text)
         
         if matches:

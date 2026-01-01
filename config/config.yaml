@@ -14,7 +14,7 @@ output:
   # 输出目录
   directory: "./output"
   # Clash配置文件名
-  clash_config_file: "clash_config.yaml"
+  clash_config_file: "free-VPN.yaml"
 
 # Clash配置模板
 clash:
