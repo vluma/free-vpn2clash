@@ -4,6 +4,7 @@ ssr_source:
   urls:
     - https://github.com/Alvin9999-newpac/fanqiang/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7
     - https://github.com/junjun266/FreeProxyGo
+    - https://raw.githubusercontent.com/hello-world-1989/v2-sub/main/end-gfw-together-af3e13
   # HTTP请求超时时间（秒）
   request_timeout: 30
   # 自定义User-Agent
