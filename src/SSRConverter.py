@@ -809,6 +809,11 @@ class SSRConverter:
         # 处理可能包含路径或参数的服务器部分
         server_port_path, params_part = server_part.split('?', 1) if '?' in server_part else (server_part, '')
         
+        # 处理URL中的片段部分（#后面的内容）
+        fragment_part = ''
+        if '#' in server_port_path:
+            server_port_path, fragment_part = server_port_path.split('#', 1)
+        
         if '/' in server_port_path:
             server_port_part, path_part = server_port_path.split('/', 1)
             path_part = '/' + path_part
@@ -841,7 +846,11 @@ class SSRConverter:
                 servername = params['sni']
         
         # 构造Clash代理配置 - 确保名称唯一
-        base_name = params.get('remarks', 'VLESS')
+        # 优先使用URL片段作为备注
+        if fragment_part:
+            base_name = fragment_part
+        else:
+            base_name = params.get('remarks', 'VLESS')
         # 使用_process_proxy_name方法处理节点名称
         proxy_name = self._process_proxy_name(base_name, source_name)
         
@@ -894,10 +903,10 @@ class SSRConverter:
             proxy["network"] = 'http'  # Clash中可能使用http
             proxy["http-opts"] = {
                 "method": "GET",
-                "path": [path_part] if path_part else ["/"]
+                "path": [params.get('path', '/')] if params.get('path') else [path_part if path_part else "/"]
             }
             if 'host' in params:
-                proxy["http-opts"]["headers"] = {"Host": [params['host']]}
+                proxy["http-opts"]["headers"] = {"Host": params['host']}
         
         return proxy
     

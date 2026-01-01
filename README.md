@@ -45,7 +45,7 @@ python -m src.main
 您可以直接使用以下订阅链接导入Clash配置：
 
 ```
-https://raw.githubusercontent.com/vluma/free-vpn2clash/refs/heads/main/output/clash_config.yaml
+https://raw.githubusercontent.com/vluma/free-vpn2clash/refs/heads/main/output/free-VPN.yaml
 ```
 
 将此链接添加到Clash客户端中即可自动获取最新的免费代理节点配置。
