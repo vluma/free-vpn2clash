@@ -13,34 +13,6 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
-- alpn:
-  - h3
-  insecure: false
-  name: Hysteria2 - fanqiang
-  password: dongtaiwang.com
-  port: 33550
-  server: 89.144.35.25
-  sni: apple.com
-  type: hysteria2
-  udp: false
-- client-fingerprint: chrome
-  http-opts:
-    method: GET
-    path:
-    - '%2Fgithub.com%2FAlvin9999#VLESS%E8%8A%82%E7%82%B91-xhttp-reality'
-  name: VLESS - fanqiang
-  network: http
-  port: 18877
-  reality-opts:
-    public-key: DZj1qrLAm6EJfPkVRPpSCgoQN8sM8Rbio0jpsS1A3FM
-    short-id: 288132e297984d34
-  server: 62.210.8.152
-  servername: mxj.myanimelist.net
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 3fb38b37-c636-44d3-ab0c-897fab438bf1
 - alterId: 0
   cipher: auto
   name: VMESS节点2-ipv6 - fanqiang
@@ -56,6 +28,60 @@ proxies:
     headers:
       Host: www.bing.com
     path: /github.com/Alvin9999-newpac
+- client-fingerprint: chrome
+  http-opts:
+    method: GET
+    path:
+    - '%2Falvin9999.com#VLESS%E8%8A%82%E7%82%B91-xhttp-reality'
+  name: VLESS - fanqiang
+  network: http
+  port: 12008
+  reality-opts:
+    public-key: ntiUM671FfaRJhQPvMCGXvb7G1N_bn9whxxuCZhctwo
+    short-id: 6a29362fb7243ef3
+  server: 157.254.223.24
+  servername: www.lovelive-anime.jp
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: ed2283e4-d134-4c40-b559-d992d4d7162b
+- alpn:
+  - h3
+  insecure: false
+  name: Hysteria2 - fanqiang
+  password: dongtaiwang.com
+  port: 33550
+  server: 89.144.35.25
+  sni: apple.com
+  type: hysteria2
+  udp: false
+- name: VLESS - FreeProxyGo
+  network: ws
+  port: 12417
+  server: 119.195.168.105
+  servername: epge.muarua.filegear-sg.me
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 695620b8-7429-78d5-5813-98b65c1c63f4
+  ws-opts:
+    headers:
+      Host: epge.muarua.filegear-sg.me
+- name: VLESS - FreeProxyGo1
+  network: ws
+  port: 12109
+  server: 183.106.210.156
+  servername: soos.frii.site
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 695620b8-7429-78d5-5813-98b65c1c63f4
+  ws-opts:
+    headers:
+      Host: soos.frii.site
 - alterId: 0
   cipher: auto
   name: 🇫🇷法国 - FreeProxyGo
@@ -71,68 +97,42 @@ proxies:
     headers:
       Host: 2001:bc8:32d7:302::10
     path: /?ed=2048HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN
-- name: VLESS - FreeProxyGo
-  network: ws
-  port: 12109
-  server: 183.106.210.156
-  servername: soos.frii.site
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 695620b8-7429-78d5-5813-98b65c1c63f4
-  ws-opts:
-    headers:
-      Host: soos.frii.site
-- name: VLESS - FreeProxyGo1
-  network: ws
-  port: 12417
-  server: 119.195.168.105
-  servername: epge.muarua.filegear-sg.me
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 695620b8-7429-78d5-5813-98b65c1c63f4
-  ws-opts:
-    headers:
-      Host: epge.muarua.filegear-sg.me
 proxy-groups:
 - name: FREE-PROXY
   proxies:
   - AUTO-SWITCH
   - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
-  - Hysteria2 - fanqiang
-  - VLESS - fanqiang
   - VMESS节点2-ipv6 - fanqiang
-  - 🇫🇷法国 - FreeProxyGo
+  - VLESS - fanqiang
+  - Hysteria2 - fanqiang
   - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
+  - 🇫🇷法国 - FreeProxyGo
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
-  - Hysteria2 - fanqiang
-  - VLESS - fanqiang
   - VMESS节点2-ipv6 - fanqiang
-  - 🇫🇷法国 - FreeProxyGo
+  - VLESS - fanqiang
+  - Hysteria2 - fanqiang
   - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
+  - 🇫🇷法国 - FreeProxyGo
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: Github - Alvin9999-newpac/fanqiang
   proxies:
-  - Hysteria2 - fanqiang
-  - VLESS - fanqiang
   - VMESS节点2-ipv6 - fanqiang
+  - VLESS - fanqiang
+  - Hysteria2 - fanqiang
   type: select
 - name: Github - junjun266/FreeProxyGo
   proxies:
-  - 🇫🇷法国 - FreeProxyGo
   - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
+  - 🇫🇷法国 - FreeProxyGo
   type: select
 rule-providers: {}
 rules:
