@@ -2,6 +2,7 @@ import re
 import os
 import sys
 import requests
+import base64
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import List, Tuple
 from playwright.sync_api import sync_playwright
@@ -213,30 +214,66 @@ class SSRFetcher:
                 print(f"尝试获取URL内容，第{retry+1}/{max_retries}次尝试")
                 
                 # 获取页面HTML
-                html_content = self._get_html_from_http(url, user_agent, timeout)
+                raw_html = self._get_html_from_http(url, user_agent, timeout)
                 
                 # 检查是否获取到了有效的HTML
-                if not html_content or html_content.strip() == "":
+                if not raw_html or raw_html.strip() == "":
                     raise ValueError("获取到的HTML内容为空")
                 
-                # 解析HTML
-                soup = BeautifulSoup(html_content, 'lxml')
                 ssr_nodes = []
+                proxy_protocols = ['ssr://', 'vmess://', 'vless://', 'ss://', 'hysteria2://', 'trojan://']
+                
+                # 先尝试直接检测并处理base64编码的内容
+                try:
+                    # 检查是否为base64编码：只包含base64字符，且长度是4的倍数
+                    # 移除可能的URL安全字符和空白字符，检查原始HTML内容
+                    base64_candidate = raw_html.strip()
+                    # 移除所有空白字符（包括换行符）
+                    base64_candidate = re.sub(r'\s+', '', base64_candidate)
+                    # 替换URL安全的base64字符
+                    base64_candidate = base64_candidate.replace('-', '+').replace('_', '/')
+                    # 检查是否只包含base64字符
+                    if re.match(r'^[A-Za-z0-9+/]+={0,2}$', base64_candidate) and len(base64_candidate) % 4 == 0:
+                        print("检测到可能的base64编码内容，尝试解码...")
+                        # 添加必要的填充
+                        padding = '=' * ((4 - len(base64_candidate) % 4) % 4)
+                        base64_candidate += padding
+                        # 解码base64
+                        decoded_content = base64.b64decode(base64_candidate).decode('utf-8')
+                        print(f"base64解码成功，内容长度: {len(decoded_content)} 字符")
+                        print(f"解码后的内容前100字符: {decoded_content[:100]}...")
+                        # 从解码后的内容中提取VPN链接
+                        self._extract_ssr_nodes_from_text(decoded_content, ssr_nodes)
+                        
+                        # 如果成功提取到节点，直接返回
+                        if ssr_nodes:
+                            unique_nodes = list(set(ssr_nodes))
+                            print(f"从base64内容中提取到 {len(unique_nodes)} 个节点")
+                            return unique_nodes
+                except Exception as e:
+                    print(f"base64解码失败，继续使用原始HTML内容: {str(e)}")
+                    # 解码失败，继续使用原始HTML内容
+                    pass
+                
+                # 原始内容不是base64编码，继续使用BeautifulSoup解析
+                html_content = raw_html
+                soup = BeautifulSoup(html_content, 'lxml')
                 raw_text = soup.get_text()
                 clean_text = " ".join(raw_text.split())
-                proxy_protocols = ['ssr://', 'vmess://', 'vless://', 'ss://', 'hysteria2://']
-
+                
                 print(f"开始解析URL {url} 的HTML内容")
                 # 检查解析后的内容是否包含代理节点
                 if any(proxy_type in html_content for proxy_type in proxy_protocols):
                     print("HTML内容中检测到代理节点")
                 else:
-                    print(f"URL {html_content} 的HTML内容中未检测到直接的代理节点")
+                    print(f"URL {html_content[:100]}... 的HTML内容中未检测到直接的代理节点")
                     print(f"HTML内容长度: {len(soup.get_text())} 字符")
-                    print(f"HTML内容: {clean_text} 字符")
+                    print(f"HTML内容: {clean_text[:100]}... 字符")
 
                     print("HTML内容中未直接检测到代理节点")
                     html_content = self._get_html_from_browser(url, user_agent, timeout)
+                    # 重新创建soup对象
+                    soup = BeautifulSoup(html_content, 'lxml')
                 
                 # 特殊处理GitLab Wiki页面的data-page-info属性
                 if 'gitlab.com' in url:
@@ -269,7 +306,7 @@ class SSRFetcher:
                 links = soup.find_all('a')
                 for link in links:
                     href = link.get('href')
-                    if href and (href.startswith('ssr://') or href.startswith('vmess://') or href.startswith('vless://') or href.startswith('ss://') or href.startswith('hysteria2://')):
+                    if href and any(href.startswith(proxy_type) for proxy_type in proxy_protocols):
                         ssr_nodes.append(href)
                 
                 # 3. 查找所有段落文本
@@ -546,9 +583,18 @@ class SSRFetcher:
             text (str): 要提取的文本
             nodes_array (list): 存储提取的节点的数组
         """
-        # 正则表达式匹配ssr://、vmess://、vless://、ss://和hysteria2://开头的链接，直到遇到另一个代理协议开头或空格、换行符
-        ssr_vmess_regex = r'(?:ssr|vmess|vless|ss|hysteria2)://[^\s\n\r]*?(?=(?:ssr|vmess|vless|ss|hysteria2)://|$)'
-        matches = re.findall(ssr_vmess_regex, text)
-        
-        if matches:
-            nodes_array.extend(matches)
+        # 正则表达式匹配ssr://、vmess://、vless://、ss://、hysteria2://和trojan://开头的链接
+        # 对于有换行符分隔的节点，使用换行符作为分隔符
+        # 对于没有换行符分隔的节点，使用下一个代理协议开头或字符串结束作为分隔符
+        # 先按换行符分割文本，然后对每个部分使用正则表达式匹配
+        lines = text.split('\n')
+        for line in lines:
+            # 移除空白字符
+            line = line.strip()
+            if not line:
+                continue
+            # 正则表达式匹配代理链接，直到遇到下一个代理协议开头或字符串结束
+            ssr_vmess_regex = r'(?:ssr|vmess|vless|ss|hysteria2|trojan)://[^\s]*?(?=(?:ssr|vmess|vless|ss|hysteria2|trojan)://|$)'
+            matches = re.findall(ssr_vmess_regex, line)
+            if matches:
+                nodes_array.extend(matches)
