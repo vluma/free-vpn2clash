@@ -56,47 +56,33 @@ proxies:
   sni: apple.com
   type: hysteria2
   udp: false
+- cipher: chacha20-ietf-poly1305
+  name: SS - FreeProxyGo
+  password: RFK38Cg7APneSB5cWDcpbm
+  port: 443
+  server: switcher-nick-croquet.freesocks.work
+  type: ss
+  udp: true
+- cipher: chacha20-ietf-poly1305
+  name: SS - FreeProxyGo1
+  password: wwzVn2ZnHfqYa6l8EWh3eY
+  port: 443
+  server: switcher-nick-croquet.freesocks.work
+  type: ss
+  udp: true
 - name: VLESS - FreeProxyGo
   network: ws
-  port: 12417
-  server: 119.195.168.105
-  servername: epge.muarua.filegear-sg.me
+  port: 8443
+  server: 193.122.100.41
+  servername: x.kkii.eu.org
   skip-cert-verify: true
   tls: true
   type: vless
   udp: false
-  uuid: 695620b8-7429-78d5-5813-98b65c1c63f4
+  uuid: 3afad5df-e056-4301-846d-665b4ef51968
   ws-opts:
     headers:
-      Host: epge.muarua.filegear-sg.me
-- name: VLESS - FreeProxyGo1
-  network: ws
-  port: 12109
-  server: 183.106.210.156
-  servername: soos.frii.site
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 695620b8-7429-78d5-5813-98b65c1c63f4
-  ws-opts:
-    headers:
-      Host: soos.frii.site
-- alterId: 0
-  cipher: auto
-  name: 🇫🇷法国 - FreeProxyGo
-  network: ws
-  port: 44579
-  server: 2001:bc8:32d7:302::10
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
-  ws-opts:
-    headers:
-      Host: 2001:bc8:32d7:302::10
-    path: /?ed=2048HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN
+      Host: x.kkii.eu.org
 proxy-groups:
 - name: FREE-PROXY
   proxies:
@@ -106,9 +92,9 @@ proxy-groups:
   - VMESS节点2-ipv6 - fanqiang
   - VLESS - fanqiang
   - Hysteria2 - fanqiang
+  - SS - FreeProxyGo
+  - SS - FreeProxyGo1
   - VLESS - FreeProxyGo
-  - VLESS - FreeProxyGo1
-  - 🇫🇷法国 - FreeProxyGo
   type: select
 - interval: 300
   name: AUTO-SWITCH
@@ -116,9 +102,9 @@ proxy-groups:
   - VMESS节点2-ipv6 - fanqiang
   - VLESS - fanqiang
   - Hysteria2 - fanqiang
+  - SS - FreeProxyGo
+  - SS - FreeProxyGo1
   - VLESS - FreeProxyGo
-  - VLESS - FreeProxyGo1
-  - 🇫🇷法国 - FreeProxyGo
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -130,9 +116,9 @@ proxy-groups:
   type: select
 - name: Github - junjun266/FreeProxyGo
   proxies:
+  - SS - FreeProxyGo
+  - SS - FreeProxyGo1
   - VLESS - FreeProxyGo
-  - VLESS - FreeProxyGo1
-  - 🇫🇷法国 - FreeProxyGo
   type: select
 rule-providers: {}
 rules:
