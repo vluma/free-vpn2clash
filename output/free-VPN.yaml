@@ -13,19 +13,11 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
-- name: Trojan - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
-  server: 54.199.8.75
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
 - cipher: chacha20-ietf-poly1305
   name: SS - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6666
-  server: 43.203.241.196
+  server: 54.199.8.75
   type: ss
   udp: true
 - alterId: 0
@@ -44,14 +36,6 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
-- name: Trojan - raw.githubusercontent.com1
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
-  server: 43.203.241.196
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com1
@@ -72,27 +56,25 @@ proxies:
   name: SS - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6666
-  server: 54.199.8.75
+  server: 43.203.241.196
   type: ss
   udp: true
-- client-fingerprint: chrome
-  http-opts:
-    method: GET
-    path:
-    - '%2Falvin9999.com#VLESS%E8%8A%82%E7%82%B91-xhttp-reality'
-  name: VLESS - fanqiang
-  network: http
-  port: 11335
-  reality-opts:
-    public-key: n9g9MHHEEg3wXVX7vUCJ44KglxLd292rNT424FCd6Vo
-    short-id: 27bb577320995e96
-  server: 89.144.35.225
-  servername: www.j-wave.co.jp
-  skip-cert-verify: true
-  tls: true
-  type: vless
+- name: Trojan - raw.githubusercontent.com
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6668
+  server: 54.199.8.75
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
   udp: false
-  uuid: f1539886-009b-493d-8ef6-4902a2451668
+- name: Trojan - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6668
+  server: 43.203.241.196
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
+  udp: false
 - alterId: 0
   cipher: auto
   name: VMESS节点2-ipv6 - fanqiang
@@ -118,6 +100,31 @@ proxies:
   sni: apple.com
   type: hysteria2
   udp: false
+- client-fingerprint: chrome
+  http-opts:
+    method: GET
+    path:
+    - '%2Falvin9999.com#VLESS%E8%8A%82%E7%82%B91-xhttp-reality'
+  name: VLESS - fanqiang
+  network: http
+  port: 11335
+  reality-opts:
+    public-key: n9g9MHHEEg3wXVX7vUCJ44KglxLd292rNT424FCd6Vo
+    short-id: 27bb577320995e96
+  server: 89.144.35.225
+  servername: www.j-wave.co.jp
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: f1539886-009b-493d-8ef6-4902a2451668
+- cipher: aes-128-gcm
+  name: SS - FreeProxyGo
+  password: b637f2e47b7827b308ebf399008075d2
+  port: 26334
+  server: 223.95.183.132
+  type: ss
+  udp: true
 - alterId: 0
   cipher: auto
   name: 🇺🇸美国 - FreeProxyGo
@@ -133,28 +140,6 @@ proxies:
     headers:
       Host: TABRIZ.NET
     path: /?BIA_TELEGRAM@AZARBAYJAB1_AZARBAYJAB1_AZARBAYJAB1_AZARBAYJAB1?ed=2560
-- cipher: aes-128-gcm
-  name: SS - FreeProxyGo
-  password: b637f2e47b7827b308ebf399008075d2
-  port: 26334
-  server: 223.95.183.132
-  type: ss
-  udp: true
-- alterId: 0
-  cipher: auto
-  name: 🇭🇰中国香港 - FreeProxyGo
-  network: ws
-  port: 16632
-  server: 125.77.160.219
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: a436dc22-e2e4-4d0a-ae38-e86dcab039c5
-  ws-opts:
-    headers:
-      Host: b26eb8c48143c11db65be2203a3f2892.mobgslb.tbcache.com
-    path: /
 - alterId: 0
   cipher: auto
   name: 🇫🇷法国 - FreeProxyGo
@@ -198,6 +183,21 @@ proxies:
   ws-opts:
     headers:
       Host: khamenei.dpdns.org
+- alterId: 0
+  cipher: auto
+  name: 🇭🇰中国香港 - FreeProxyGo
+  network: ws
+  port: 16632
+  server: 125.77.160.219
+  skip-cert-verify: true
+  tls: false
+  type: vmess
+  udp: true
+  uuid: a436dc22-e2e4-4d0a-ae38-e86dcab039c5
+  ws-opts:
+    headers:
+      Host: b26eb8c48143c11db65be2203a3f2892.mobgslb.tbcache.com
+    path: /
 proxy-groups:
 - name: FREE-PROXY
   proxies:
@@ -205,66 +205,66 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
-  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com1
-  - VLESS - fanqiang
+  - Trojan - raw.githubusercontent.com
+  - Trojan - raw.githubusercontent.com1
   - VMESS节点2-ipv6 - fanqiang
   - Hysteria2 - fanqiang
-  - 🇺🇸美国 - FreeProxyGo
+  - VLESS - fanqiang
   - SS - FreeProxyGo
-  - 🇭🇰中国香港 - FreeProxyGo
+  - 🇺🇸美国 - FreeProxyGo
   - 🇫🇷法国 - FreeProxyGo
   - 🇺🇸美国 - FreeProxyGo1
   - VLESS - FreeProxyGo
+  - 🇭🇰中国香港 - FreeProxyGo
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
-  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com1
-  - VLESS - fanqiang
+  - Trojan - raw.githubusercontent.com
+  - Trojan - raw.githubusercontent.com1
   - VMESS节点2-ipv6 - fanqiang
   - Hysteria2 - fanqiang
-  - 🇺🇸美国 - FreeProxyGo
+  - VLESS - fanqiang
   - SS - FreeProxyGo
-  - 🇭🇰中国香港 - FreeProxyGo
+  - 🇺🇸美国 - FreeProxyGo
   - 🇫🇷法国 - FreeProxyGo
   - 🇺🇸美国 - FreeProxyGo1
   - VLESS - FreeProxyGo
+  - 🇭🇰中国香港 - FreeProxyGo
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
-  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
+  - Trojan - raw.githubusercontent.com1
   type: select
 - name: Github - Alvin9999-newpac/fanqiang
   proxies:
-  - VLESS - fanqiang
   - VMESS节点2-ipv6 - fanqiang
   - Hysteria2 - fanqiang
+  - VLESS - fanqiang
   type: select
 - name: Github - junjun266/FreeProxyGo
   proxies:
-  - 🇺🇸美国 - FreeProxyGo
   - SS - FreeProxyGo
-  - 🇭🇰中国香港 - FreeProxyGo
+  - 🇺🇸美国 - FreeProxyGo
   - 🇫🇷法国 - FreeProxyGo
   - 🇺🇸美国 - FreeProxyGo1
   - VLESS - FreeProxyGo
+  - 🇭🇰中国香港 - FreeProxyGo
   type: select
 rule-providers: {}
 rules:
