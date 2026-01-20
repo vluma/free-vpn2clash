@@ -40,9 +40,143 @@ clash:
     nameserver: ["114.114.114.114", "8.8.8.8"]
   # 规则配置
   rules:
-    - "DOMAIN-SUFFIX,google.com,FREE-PROXY"
+    # 1. 本地IP和特殊网络规则
+    - "IP-CIDR,127.0.0.0/8,DIRECT"
+    - "IP-CIDR,192.168.0.0/16,DIRECT"
+    - "IP-CIDR,10.0.0.0/8,DIRECT"
+    - "IP-CIDR,172.16.0.0/12,DIRECT"
+    - "IP-CIDR,100.64.0.0/10,DIRECT"
+    - "IP-CIDR,169.254.0.0/16,DIRECT"
+    - "IP-CIDR6,::1/128,DIRECT"
+    - "IP-CIDR6,fc00::/7,DIRECT"
+    - "IP-CIDR6,fe80::/10,DIRECT"
+    - "DOMAIN,localhost,DIRECT"
+    - "DOMAIN-SUFFIX,local,DIRECT"
+    
+    # 2. 国内可访问的国外服务
+    - "DOMAIN-SUFFIX,cdn.jsdelivr.net,DIRECT"
+    - "DOMAIN-SUFFIX,cdnjs.cloudflare.com,DIRECT"
+    - "DOMAIN-SUFFIX,unpkg.com,DIRECT"
+    - "DOMAIN-SUFFIX,bootcdn.net,DIRECT"
+    - "DOMAIN-SUFFIX,staticfile.org,DIRECT"
+    - "DOMAIN-SUFFIX,googleapis.cn,DIRECT"
+    - "DOMAIN-SUFFIX,gstatic.cn,DIRECT"
+    - "DOMAIN-SUFFIX,duckduckgo.com,DIRECT"
+    - "DOMAIN-SUFFIX,bing.com,DIRECT"
+    - "DOMAIN-SUFFIX,github.com,DIRECT"
+    - "DOMAIN-SUFFIX,github.io,DIRECT"
+    - "DOMAIN-SUFFIX,gitlab.com,DIRECT"
+    - "DOMAIN-SUFFIX,bitbucket.org,DIRECT"
+    - "DOMAIN-SUFFIX,stackoverflow.com,DIRECT"
+    - "DOMAIN-SUFFIX,stackexchange.com,DIRECT"
+    - "DOMAIN-SUFFIX,developer.mozilla.org,DIRECT"
+    - "DOMAIN-SUFFIX,w3.org,DIRECT"
+    - "DOMAIN-SUFFIX,caniuse.com,DIRECT"
+    - "DOMAIN-SUFFIX,mdn.io,DIRECT"
+    - "DOMAIN-SUFFIX,api.github.com,DIRECT"
+    - "DOMAIN-SUFFIX,api.stackexchange.com,DIRECT"
+    
+    # 3. 国内常用域名规则
+    # 搜索引擎与资讯
+    - "DOMAIN-SUFFIX,baidu.com,DIRECT"
+    - "DOMAIN-SUFFIX,baidustatic.com,DIRECT"
+    - "DOMAIN-SUFFIX,sogou.com,DIRECT"
+    - "DOMAIN-SUFFIX,sogoucdn.com,DIRECT"
+    - "DOMAIN-SUFFIX,haosou.com,DIRECT"
+    - "DOMAIN-SUFFIX,soso.com,DIRECT"
+    - "DOMAIN-SUFFIX,163.com,DIRECT"
+    - "DOMAIN-SUFFIX,126.com,DIRECT"
+    - "DOMAIN-SUFFIX,netease.com,DIRECT"
+    - "DOMAIN-SUFFIX,sina.com,DIRECT"
+    - "DOMAIN-SUFFIX,sina.com.cn,DIRECT"
+    - "DOMAIN-SUFFIX,ifeng.com,DIRECT"
+    - "DOMAIN-SUFFIX,people.com.cn,DIRECT"
+    - "DOMAIN-SUFFIX,xinhuanet.com,DIRECT"
+    
+    # 社交媒体与视频
+    - "DOMAIN-SUFFIX,weibo.com,DIRECT"
+    - "DOMAIN-SUFFIX,qq.com,DIRECT"
+    - "DOMAIN-SUFFIX,tenpay.com,DIRECT"
+    - "DOMAIN-SUFFIX,gtimg.com,DIRECT"
+    - "DOMAIN-SUFFIX,youku.com,DIRECT"
+    - "DOMAIN-SUFFIX,iqiyi.com,DIRECT"
+    - "DOMAIN-SUFFIX,tencent.com,DIRECT"
+    - "DOMAIN-SUFFIX,txcdn.cn,DIRECT"
+    - "DOMAIN-SUFFIX,bilibili.com,DIRECT"
+    - "DOMAIN-SUFFIX,biliapi.net,DIRECT"
+    - "DOMAIN-SUFFIX,douyin.com,DIRECT"
+    - "DOMAIN-SUFFIX,kuaishou.com,DIRECT"
+    
+    # 电商与支付
+    - "DOMAIN-SUFFIX,taobao.com,DIRECT"
+    - "DOMAIN-SUFFIX,tmall.com,DIRECT"
+    - "DOMAIN-SUFFIX,alipay.com,DIRECT"
+    - "DOMAIN-SUFFIX,alipayobjects.com,DIRECT"
+    - "DOMAIN-SUFFIX,jd.com,DIRECT"
+    - "DOMAIN-SUFFIX,jdcloud.com,DIRECT"
+    - "DOMAIN-SUFFIX,pinduoduo.com,DIRECT"
+    - "DOMAIN-SUFFIX,vip.com,DIRECT"
+    - "DOMAIN-SUFFIX,suning.com,DIRECT"
+    
+    # 科技与开发者服务
+    - "DOMAIN-SUFFIX,aliyun.com,DIRECT"
+    - "DOMAIN-SUFFIX,aliyuncs.com,DIRECT"
+    - "DOMAIN-SUFFIX,tencentcloud.com,DIRECT"
+    - "DOMAIN-SUFFIX,cloud.tencent.com,DIRECT"
+    - "DOMAIN-SUFFIX,huaweicloud.com,DIRECT"
+    - "DOMAIN-SUFFIX,baiducloud.com,DIRECT"
+    - "DOMAIN-SUFFIX,csdn.net,DIRECT"
+    - "DOMAIN-SUFFIX,jianshu.com,DIRECT"
+    - "DOMAIN-SUFFIX,zhihu.com,DIRECT"
+    - "DOMAIN-SUFFIX,segmentfault.com,DIRECT"
+    
+    # 教育与政府
+    - "DOMAIN-SUFFIX,edu.cn,DIRECT"
+    - "DOMAIN-SUFFIX,gov.cn,DIRECT"
+    
+    # 4. 需要代理的国外网站规则
+    # 社交媒体与视频
     - "DOMAIN-SUFFIX,facebook.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,fbcdn.net,FREE-PROXY"
+    - "DOMAIN-SUFFIX,instagram.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,twitter.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,twimg.com,FREE-PROXY"
     - "DOMAIN-SUFFIX,youtube.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,youtube-nocookie.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,ytimg.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,netflix.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,netflix.net,FREE-PROXY"
+    - "DOMAIN-SUFFIX,hulu.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,disneyplus.com,FREE-PROXY"
+    
+    # 流媒体与音乐
+    - "DOMAIN-SUFFIX,spotify.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,deezer.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,soundcloud.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,pandora.com,FREE-PROXY"
+    
+    # 新闻与资讯
+    - "DOMAIN-SUFFIX,nytimes.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,wsj.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,medium.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,reddit.com,FREE-PROXY"
+    
+    # 邮件服务
+    - "DOMAIN-SUFFIX,gmail.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,outlook.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,hotmail.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,icloud.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,yahoo.com,FREE-PROXY"
+    
+    # 游戏与娱乐
+    - "DOMAIN-SUFFIX,steamcommunity.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,steampowered.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,epicgames.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,origin.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,blizzard.com,FREE-PROXY"
+    - "DOMAIN-SUFFIX,battlenet.com,FREE-PROXY"
+    
+    # 5. 兜底规则
     - "GEOIP,CN,DIRECT"
     - "MATCH,FREE-PROXY"
 
