@@ -13,6 +13,21 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
+  server: 54.199.8.75
+  type: ss
+  udp: true
+- name: Trojan - raw.githubusercontent.com
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6668
+  server: 54.199.8.75
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
+  udp: false
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com
@@ -29,21 +44,6 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 54.199.8.75
-  type: ss
-  udp: true
-- name: Trojan - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
-  server: 54.199.8.75
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
 - name: Trojan - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
@@ -52,13 +52,6 @@ proxies:
   skip-cert-verify: false
   type: trojan
   udp: false
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com1
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 43.203.241.196
-  type: ss
-  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com1
@@ -75,6 +68,28 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
+  server: 43.203.241.196
+  type: ss
+  udp: true
+- alterId: 0
+  cipher: auto
+  name: VMESS节点2-ipv6 - fanqiang
+  network: ws
+  port: 23456
+  server: 2a14:7584:d0a2::a
+  skip-cert-verify: true
+  tls: false
+  type: vmess
+  udp: true
+  uuid: bd48e0ac-e90e-4451-a4f2-abf061cfb890
+  ws-opts:
+    headers:
+      Host: www.bing.com
+    path: /alvin9999.com
 - client-fingerprint: chrome
   http-opts:
     method: GET
@@ -103,26 +118,11 @@ proxies:
   sni: apple.com
   type: hysteria2
   udp: false
-- alterId: 0
-  cipher: auto
-  name: VMESS节点2-ipv6 - fanqiang
-  network: ws
-  port: 23456
-  server: 2a14:7584:d0a2::a
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: bd48e0ac-e90e-4451-a4f2-abf061cfb890
-  ws-opts:
-    headers:
-      Host: www.bing.com
-    path: /alvin9999.com
 - name: VLESS - FreeProxyGo
   network: ws
   port: 2053
   server: 25.129.197.138
-  servername: khamenei.dpdns.org
+  servername: KhAmeneI.DPdNs.OrG
   skip-cert-verify: true
   tls: true
   type: vless
@@ -130,11 +130,26 @@ proxies:
   uuid: 8a07740f-b932-4372-a3a2-ed91f184cd33
   ws-opts:
     headers:
-      Host: khamenei.dpdns.org
+      Host: KhAmeneI.DPdNs.OrG
+- alterId: 0
+  cipher: auto
+  name: 🇫🇷法国 - FreeProxyGo
+  network: ws
+  port: 44579
+  server: 2001:bc8:32d7:302::10
+  skip-cert-verify: true
+  tls: false
+  type: vmess
+  udp: true
+  uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
+  ws-opts:
+    headers:
+      Host: AZERB.NET
+    path: /?BIA_TELEGRAM@AZARBAYJAB1_AZARBAYJAB1_AZARBAYJAB1_AZARBAYJAB1
 - name: VLESS - FreeProxyGo1
   network: ws
   port: 443
-  server: 162.159.16.63
+  server: 162.159.45.232
   servername: l.ayovo.netlib.re
   skip-cert-verify: true
   tls: true
@@ -147,52 +162,36 @@ proxies:
 - name: VLESS - FreeProxyGo2
   network: ws
   port: 443
-  server: vip2.kaixincloud.top
-  servername: sni.meibidi.pp.ua
+  server: icook.hk
+  servername: snip.qqq.hidns.co
   skip-cert-verify: true
   tls: true
   type: vless
   udp: false
-  uuid: 55d9ec38-1b8a-454b-981a-6acfe8f56d8c
+  uuid: d65f5eda-38b3-448f-8e5d-50587f19dd25
   ws-opts:
     headers:
-      Host: sni.meibidi.pp.ua
-- alterId: 0
-  cipher: auto
-  name: GB英国(ProxyGo免费节点分享) - FreeProxyGo
-  network: tcp
-  port: 180
-  server: 82.198.246.97
-  skip-cert-verify: true
-  tls: false
-  type: vmess
+      Host: snip.qqq.hidns.co
+- cipher: chacha20-ietf-poly1305
+  name: SS - FreeProxyGo
+  password: RFK38Cg7APneSB5cWDcpbm
+  port: 443
+  server: switcher-nick-croquet.freesocks.work
+  type: ss
   udp: true
-  uuid: d13fc2f5-3e05-4795-81eb-44143a09e552
-  ws-opts:
-    headers:
-      Host: 2001:bc8:32d7:302::10
-    path: /ed=2048@V2Rayhiddify10--https://t.me/V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--V2Rayhiddify10--https://t.me/V2Rayhiddify10
 - name: VLESS - FreeProxyGo3
   network: ws
-  port: 2053
-  server: 25.129.197.138
-  servername: KhAmeneI.DPdNs.OrG
+  port: 2087
+  server: 5.10.214.5
+  servername: 5JxGp6VrFh.SmArTtEcHzAaL.iNfO
   skip-cert-verify: true
   tls: true
   type: vless
   udp: false
-  uuid: 8a07740f-b932-4372-a3a2-ed91f184cd33
+  uuid: 7e58699f-1d5d-4f6b-b181-cb74f0ad9509
   ws-opts:
     headers:
-      Host: khamenei.dpdns.org
-- name: Trojan - FreeProxyGo
-  password: d51abb35-94a4-4529-9244-2808beaa4624
-  port: 35837
-  server: de.yiciyuanquicken.online
-  servername: de.yiciyuanquicken.online
-  skip-cert-verify: false
-  type: trojan
-  udp: false
+      Host: 5JxGp6VrFh.SmArTtEcHzAaL.iNfO
 proxy-groups:
 - name: FREE-PROXY
   proxies:
@@ -200,72 +199,179 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
-  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com
+  - end-gfw.com - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
+  - VMESS节点2-ipv6 - fanqiang
   - VLESS - fanqiang
   - Hysteria2 - fanqiang
-  - VMESS节点2-ipv6 - fanqiang
   - VLESS - FreeProxyGo
+  - 🇫🇷法国 - FreeProxyGo
   - VLESS - FreeProxyGo1
   - VLESS - FreeProxyGo2
-  - GB英国(ProxyGo免费节点分享) - FreeProxyGo
+  - SS - FreeProxyGo
   - VLESS - FreeProxyGo3
-  - Trojan - FreeProxyGo
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
-  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com
+  - end-gfw.com - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
+  - VMESS节点2-ipv6 - fanqiang
   - VLESS - fanqiang
   - Hysteria2 - fanqiang
-  - VMESS节点2-ipv6 - fanqiang
   - VLESS - FreeProxyGo
+  - 🇫🇷法国 - FreeProxyGo
   - VLESS - FreeProxyGo1
   - VLESS - FreeProxyGo2
-  - GB英国(ProxyGo免费节点分享) - FreeProxyGo
+  - SS - FreeProxyGo
   - VLESS - FreeProxyGo3
-  - Trojan - FreeProxyGo
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
-  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com
+  - end-gfw.com - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
   type: select
 - name: Github - Alvin9999-newpac/fanqiang
   proxies:
+  - VMESS节点2-ipv6 - fanqiang
   - VLESS - fanqiang
   - Hysteria2 - fanqiang
-  - VMESS节点2-ipv6 - fanqiang
   type: select
 - name: Github - junjun266/FreeProxyGo
   proxies:
   - VLESS - FreeProxyGo
+  - 🇫🇷法国 - FreeProxyGo
   - VLESS - FreeProxyGo1
   - VLESS - FreeProxyGo2
-  - GB英国(ProxyGo免费节点分享) - FreeProxyGo
+  - SS - FreeProxyGo
   - VLESS - FreeProxyGo3
-  - Trojan - FreeProxyGo
   type: select
 rule-providers: {}
 rules:
-- DOMAIN-SUFFIX,google.com,FREE-PROXY
+- IP-CIDR,127.0.0.0/8,DIRECT
+- IP-CIDR,192.168.0.0/16,DIRECT
+- IP-CIDR,10.0.0.0/8,DIRECT
+- IP-CIDR,172.16.0.0/12,DIRECT
+- IP-CIDR,100.64.0.0/10,DIRECT
+- IP-CIDR,169.254.0.0/16,DIRECT
+- IP-CIDR6,::1/128,DIRECT
+- IP-CIDR6,fc00::/7,DIRECT
+- IP-CIDR6,fe80::/10,DIRECT
+- DOMAIN,localhost,DIRECT
+- DOMAIN-SUFFIX,local,DIRECT
+- DOMAIN-SUFFIX,cdn.jsdelivr.net,DIRECT
+- DOMAIN-SUFFIX,cdnjs.cloudflare.com,DIRECT
+- DOMAIN-SUFFIX,unpkg.com,DIRECT
+- DOMAIN-SUFFIX,bootcdn.net,DIRECT
+- DOMAIN-SUFFIX,staticfile.org,DIRECT
+- DOMAIN-SUFFIX,googleapis.cn,DIRECT
+- DOMAIN-SUFFIX,gstatic.cn,DIRECT
+- DOMAIN-SUFFIX,duckduckgo.com,DIRECT
+- DOMAIN-SUFFIX,bing.com,DIRECT
+- DOMAIN-SUFFIX,github.com,DIRECT
+- DOMAIN-SUFFIX,github.io,DIRECT
+- DOMAIN-SUFFIX,gitlab.com,DIRECT
+- DOMAIN-SUFFIX,bitbucket.org,DIRECT
+- DOMAIN-SUFFIX,stackoverflow.com,DIRECT
+- DOMAIN-SUFFIX,stackexchange.com,DIRECT
+- DOMAIN-SUFFIX,developer.mozilla.org,DIRECT
+- DOMAIN-SUFFIX,w3.org,DIRECT
+- DOMAIN-SUFFIX,caniuse.com,DIRECT
+- DOMAIN-SUFFIX,mdn.io,DIRECT
+- DOMAIN-SUFFIX,api.github.com,DIRECT
+- DOMAIN-SUFFIX,api.stackexchange.com,DIRECT
+- DOMAIN-SUFFIX,baidu.com,DIRECT
+- DOMAIN-SUFFIX,baidustatic.com,DIRECT
+- DOMAIN-SUFFIX,sogou.com,DIRECT
+- DOMAIN-SUFFIX,sogoucdn.com,DIRECT
+- DOMAIN-SUFFIX,haosou.com,DIRECT
+- DOMAIN-SUFFIX,soso.com,DIRECT
+- DOMAIN-SUFFIX,163.com,DIRECT
+- DOMAIN-SUFFIX,126.com,DIRECT
+- DOMAIN-SUFFIX,netease.com,DIRECT
+- DOMAIN-SUFFIX,sina.com,DIRECT
+- DOMAIN-SUFFIX,sina.com.cn,DIRECT
+- DOMAIN-SUFFIX,ifeng.com,DIRECT
+- DOMAIN-SUFFIX,people.com.cn,DIRECT
+- DOMAIN-SUFFIX,xinhuanet.com,DIRECT
+- DOMAIN-SUFFIX,weibo.com,DIRECT
+- DOMAIN-SUFFIX,qq.com,DIRECT
+- DOMAIN-SUFFIX,tenpay.com,DIRECT
+- DOMAIN-SUFFIX,gtimg.com,DIRECT
+- DOMAIN-SUFFIX,youku.com,DIRECT
+- DOMAIN-SUFFIX,iqiyi.com,DIRECT
+- DOMAIN-SUFFIX,tencent.com,DIRECT
+- DOMAIN-SUFFIX,txcdn.cn,DIRECT
+- DOMAIN-SUFFIX,bilibili.com,DIRECT
+- DOMAIN-SUFFIX,biliapi.net,DIRECT
+- DOMAIN-SUFFIX,douyin.com,DIRECT
+- DOMAIN-SUFFIX,kuaishou.com,DIRECT
+- DOMAIN-SUFFIX,taobao.com,DIRECT
+- DOMAIN-SUFFIX,tmall.com,DIRECT
+- DOMAIN-SUFFIX,alipay.com,DIRECT
+- DOMAIN-SUFFIX,alipayobjects.com,DIRECT
+- DOMAIN-SUFFIX,jd.com,DIRECT
+- DOMAIN-SUFFIX,jdcloud.com,DIRECT
+- DOMAIN-SUFFIX,pinduoduo.com,DIRECT
+- DOMAIN-SUFFIX,vip.com,DIRECT
+- DOMAIN-SUFFIX,suning.com,DIRECT
+- DOMAIN-SUFFIX,aliyun.com,DIRECT
+- DOMAIN-SUFFIX,aliyuncs.com,DIRECT
+- DOMAIN-SUFFIX,tencentcloud.com,DIRECT
+- DOMAIN-SUFFIX,cloud.tencent.com,DIRECT
+- DOMAIN-SUFFIX,huaweicloud.com,DIRECT
+- DOMAIN-SUFFIX,baiducloud.com,DIRECT
+- DOMAIN-SUFFIX,csdn.net,DIRECT
+- DOMAIN-SUFFIX,jianshu.com,DIRECT
+- DOMAIN-SUFFIX,zhihu.com,DIRECT
+- DOMAIN-SUFFIX,segmentfault.com,DIRECT
+- DOMAIN-SUFFIX,edu.cn,DIRECT
+- DOMAIN-SUFFIX,gov.cn,DIRECT
 - DOMAIN-SUFFIX,facebook.com,FREE-PROXY
+- DOMAIN-SUFFIX,fbcdn.net,FREE-PROXY
+- DOMAIN-SUFFIX,instagram.com,FREE-PROXY
+- DOMAIN-SUFFIX,twitter.com,FREE-PROXY
+- DOMAIN-SUFFIX,twimg.com,FREE-PROXY
 - DOMAIN-SUFFIX,youtube.com,FREE-PROXY
+- DOMAIN-SUFFIX,youtube-nocookie.com,FREE-PROXY
+- DOMAIN-SUFFIX,ytimg.com,FREE-PROXY
+- DOMAIN-SUFFIX,netflix.com,FREE-PROXY
+- DOMAIN-SUFFIX,netflix.net,FREE-PROXY
+- DOMAIN-SUFFIX,hulu.com,FREE-PROXY
+- DOMAIN-SUFFIX,disneyplus.com,FREE-PROXY
+- DOMAIN-SUFFIX,spotify.com,FREE-PROXY
+- DOMAIN-SUFFIX,deezer.com,FREE-PROXY
+- DOMAIN-SUFFIX,soundcloud.com,FREE-PROXY
+- DOMAIN-SUFFIX,pandora.com,FREE-PROXY
+- DOMAIN-SUFFIX,nytimes.com,FREE-PROXY
+- DOMAIN-SUFFIX,wsj.com,FREE-PROXY
+- DOMAIN-SUFFIX,medium.com,FREE-PROXY
+- DOMAIN-SUFFIX,reddit.com,FREE-PROXY
+- DOMAIN-SUFFIX,gmail.com,FREE-PROXY
+- DOMAIN-SUFFIX,outlook.com,FREE-PROXY
+- DOMAIN-SUFFIX,hotmail.com,FREE-PROXY
+- DOMAIN-SUFFIX,icloud.com,FREE-PROXY
+- DOMAIN-SUFFIX,yahoo.com,FREE-PROXY
+- DOMAIN-SUFFIX,steamcommunity.com,FREE-PROXY
+- DOMAIN-SUFFIX,steampowered.com,FREE-PROXY
+- DOMAIN-SUFFIX,epicgames.com,FREE-PROXY
+- DOMAIN-SUFFIX,origin.com,FREE-PROXY
+- DOMAIN-SUFFIX,blizzard.com,FREE-PROXY
+- DOMAIN-SUFFIX,battlenet.com,FREE-PROXY
 - GEOIP,CN,DIRECT
 - MATCH,FREE-PROXY
 secret: ''
