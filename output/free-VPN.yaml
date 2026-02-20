@@ -20,21 +20,6 @@ proxies:
   server: 43.203.241.196
   type: ss
   udp: true
-- name: Trojan - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
-  server: 43.203.241.196
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com1
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 54.199.8.75
-  type: ss
-  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com
@@ -67,10 +52,25 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
-- name: Trojan - raw.githubusercontent.com1
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
+  server: 54.199.8.75
+  type: ss
+  udp: true
+- name: Trojan - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
   server: 54.199.8.75
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
+  udp: false
+- name: Trojan - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6668
+  server: 43.203.241.196
   servername: baidu.com#end-gfw.com
   skip-cert-verify: false
   type: trojan
@@ -85,6 +85,21 @@ proxies:
   sni: apple.com
   type: hysteria2
   udp: false
+- alterId: 0
+  cipher: auto
+  name: VMESS节点2-ipv6 - fanqiang
+  network: ws
+  port: 23456
+  server: 2a14:7584:d0a2::a
+  skip-cert-verify: true
+  tls: false
+  type: vmess
+  udp: true
+  uuid: bd48e0ac-e90e-4451-a4f2-abf061cfb890
+  ws-opts:
+    headers:
+      Host: www.bing.com
+    path: /alvin9999.com
 - client-fingerprint: chrome
   http-opts:
     method: GET
@@ -103,157 +118,51 @@ proxies:
   type: vless
   udp: false
   uuid: bcb13ecb-4f63-4257-ae01-ec5aeaa613a5
-- alterId: 0
-  cipher: auto
-  name: VMESS节点2-ipv6 - fanqiang
-  network: ws
-  port: 23456
-  server: 2a14:7584:d0a2::a
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: bd48e0ac-e90e-4451-a4f2-abf061cfb890
-  ws-opts:
-    headers:
-      Host: www.bing.com
-    path: /alvin9999.com
-- alterId: 0
-  cipher: auto
-  name: 🇺🇸美国 - FreeProxyGo
-  network: ws
-  port: 44579
-  server: 2001:bc8:32d7:302::10
-  servername: 2001:bc8:32d7:302::10
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
-  ws-opts:
-    headers:
-      Host: 2001:bc8:32d7:302::10
-    path: /?ed=2048HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN--HiByeVPNN
-- alterId: 0
-  cipher: auto
-  name: 🇭🇰中国香港 - FreeProxyGo
-  network: ws
-  port: 44579
-  server: 2001:bc8:32d7:302::10
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
-  ws-opts:
-    path: /?BIA_TELEGRAM@AZARBAYJAB1_AZARBAYJAB1_AZARBAYJAB1_AZARBAYJAB1
-- alterId: 0
-  cipher: auto
-  name: 🇭🇰中国香港 - FreeProxyGo1
-  network: ws
-  port: 44579
-  server: 2001:bc8:32d7:302::11
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
-  ws-opts:
-    headers:
-      Host: TABRIZ.NET
-    path: /?BIA_TELEGRAM@AZARBAYJAB1_AZARBAYJAB1_AZARBAYJAB1_AZARBAYJAB1?ed=2560
-- alterId: 0
-  cipher: auto
-  name: 🇺🇸美国 - FreeProxyGo2
-  network: ws
-  port: 44579
-  server: 2001:bc8:32d7:302::10
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
-  ws-opts:
-    path: ?ed=2048
-- alterId: 0
-  cipher: auto
-  name: 🇺🇸美国 - FreeProxyGo3
-  network: ws
-  port: 44579
-  server: 2001:bc8:32d7:302::10
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
-  ws-opts:
-    headers:
-      Host: 2001:bc8:32d7:302::10
-    path: /?ed=2048
 proxy-groups:
 - name: FREE-PROXY
   proxies:
   - AUTO-SWITCH
   - raw.githubusercontent.com
   - Github - Alvin9999-newpac/fanqiang
-  - Github - junjun266/FreeProxyGo
   - SS - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
   - Hysteria2 - fanqiang
-  - VLESS - fanqiang
   - VMESS节点2-ipv6 - fanqiang
-  - 🇺🇸美国 - FreeProxyGo
-  - 🇭🇰中国香港 - FreeProxyGo
-  - 🇭🇰中国香港 - FreeProxyGo1
-  - 🇺🇸美国 - FreeProxyGo2
-  - 🇺🇸美国 - FreeProxyGo3
+  - VLESS - fanqiang
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
   - SS - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
   - Hysteria2 - fanqiang
-  - VLESS - fanqiang
   - VMESS节点2-ipv6 - fanqiang
-  - 🇺🇸美国 - FreeProxyGo
-  - 🇭🇰中国香港 - FreeProxyGo
-  - 🇭🇰中国香港 - FreeProxyGo1
-  - 🇺🇸美国 - FreeProxyGo2
-  - 🇺🇸美国 - FreeProxyGo3
+  - VLESS - fanqiang
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
   - SS - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
   type: select
 - name: Github - Alvin9999-newpac/fanqiang
   proxies:
   - Hysteria2 - fanqiang
-  - VLESS - fanqiang
   - VMESS节点2-ipv6 - fanqiang
-  type: select
-- name: Github - junjun266/FreeProxyGo
-  proxies:
-  - 🇺🇸美国 - FreeProxyGo
-  - 🇭🇰中国香港 - FreeProxyGo
-  - 🇭🇰中国香港 - FreeProxyGo1
-  - 🇺🇸美国 - FreeProxyGo2
-  - 🇺🇸美国 - FreeProxyGo3
+  - VLESS - fanqiang
   type: select
 rule-providers: {}
 rules:
