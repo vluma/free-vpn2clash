@@ -13,14 +13,6 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
-- name: Trojan - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
-  server: 43.203.241.196
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
 - cipher: chacha20-ietf-poly1305
   name: SS - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
@@ -33,7 +25,7 @@ proxies:
   name: end-gfw.com - raw.githubusercontent.com
   network: ws
   port: 6868
-  server: 43.203.241.196
+  server: 54.199.8.75
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -51,12 +43,20 @@ proxies:
   server: 54.199.8.75
   type: ss
   udp: true
+- name: Trojan - raw.githubusercontent.com
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6668
+  server: 43.203.241.196
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
+  udp: false
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com1
   network: ws
   port: 6868
-  server: 54.199.8.75
+  server: 43.203.241.196
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -90,16 +90,6 @@ proxies:
     headers:
       Host: www.bing.com
     path: /alvin9999.com
-- alpn:
-  - h3
-  insecure: false
-  name: Hysteria2 - fanqiang
-  password: dongtaiwang.com
-  port: 50022
-  server: '[2a14:7584:d04a::a]'
-  sni: apple.com
-  type: hysteria2
-  udp: false
 - client-fingerprint: chrome
   http-opts:
     method: GET
@@ -118,13 +108,24 @@ proxies:
   type: vless
   udp: false
   uuid: bcb13ecb-4f63-4257-ae01-ec5aeaa613a5
-- cipher: chacha20-ietf-poly1305
-  name: SS - FreeProxyGo
-  password: c6d61cd1-d3dc-405e-afb2-d67815f4e4da
-  port: 18148
-  server: ldu.izenny.com
-  type: ss
-  udp: true
+- alpn:
+  - h3
+  insecure: false
+  name: Hysteria2 - fanqiang
+  password: dongtaiwang.com
+  port: 50022
+  server: '[2a14:7584:d04a::a]'
+  sni: apple.com
+  type: hysteria2
+  udp: false
+- name: Trojan - FreeProxyGo
+  password: 04e5b584-1850-483d-a844-9ad624a4ca8e
+  port: 31101
+  server: 220.130.58.136
+  servername: green2.cdntencentmusic.com
+  skip-cert-verify: false
+  type: trojan
+  udp: false
 - alterId: 0
   cipher: auto
   name: 🇺🇸美国 - FreeProxyGo
@@ -140,14 +141,6 @@ proxies:
     headers:
       Host: TABRIZ.NET
     path: /?BIA_TELEGRAM@AZARBAYJAB1_AZARBAYJAB1_AZARBAYJAB1_AZARBAYJAB1?ed=2560
-- name: Trojan - FreeProxyGo
-  password: 5f6ded93-4ab8-4a99-9c84-b19b9993f27c
-  port: 31101
-  server: green2.cdntencentmusic.com
-  servername: green2.cdntencentmusic.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
 - name: VLESS - FreeProxyGo
   network: tcp
   port: 443
@@ -159,9 +152,9 @@ proxies:
   udp: false
   uuid: 0e90f352-e9bc-4834-8ff6-49ba887eded4
 - name: Trojan - FreeProxyGo1
-  password: 04e5b584-1850-483d-a844-9ad624a4ca8e
+  password: 5f6ded93-4ab8-4a99-9c84-b19b9993f27c
   port: 31101
-  server: 220.130.58.136
+  server: green2.cdntencentmusic.com
   servername: green2.cdntencentmusic.com
   skip-cert-verify: false
   type: trojan
@@ -174,6 +167,13 @@ proxies:
   skip-cert-verify: false
   type: trojan
   udp: false
+- cipher: chacha20-ietf-poly1305
+  name: SS - FreeProxyGo
+  password: c6d61cd1-d3dc-405e-afb2-d67815f4e4da
+  port: 18148
+  server: ldu.izenny.com
+  type: ss
+  udp: true
 proxy-groups:
 - name: FREE-PROXY
   proxies:
@@ -181,66 +181,66 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
-  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com1
   - VMESS节点2-ipv6 - fanqiang
-  - Hysteria2 - fanqiang
   - VLESS - fanqiang
-  - SS - FreeProxyGo
-  - 🇺🇸美国 - FreeProxyGo
+  - Hysteria2 - fanqiang
   - Trojan - FreeProxyGo
+  - 🇺🇸美国 - FreeProxyGo
   - VLESS - FreeProxyGo
   - Trojan - FreeProxyGo1
   - Trojan - FreeProxyGo2
+  - SS - FreeProxyGo
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
-  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com1
   - VMESS节点2-ipv6 - fanqiang
-  - Hysteria2 - fanqiang
   - VLESS - fanqiang
-  - SS - FreeProxyGo
-  - 🇺🇸美国 - FreeProxyGo
+  - Hysteria2 - fanqiang
   - Trojan - FreeProxyGo
+  - 🇺🇸美国 - FreeProxyGo
   - VLESS - FreeProxyGo
   - Trojan - FreeProxyGo1
   - Trojan - FreeProxyGo2
+  - SS - FreeProxyGo
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
-  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com1
   type: select
 - name: Github - Alvin9999-newpac/fanqiang
   proxies:
   - VMESS节点2-ipv6 - fanqiang
-  - Hysteria2 - fanqiang
   - VLESS - fanqiang
+  - Hysteria2 - fanqiang
   type: select
 - name: Github - junjun266/FreeProxyGo
   proxies:
-  - SS - FreeProxyGo
-  - 🇺🇸美国 - FreeProxyGo
   - Trojan - FreeProxyGo
+  - 🇺🇸美国 - FreeProxyGo
   - VLESS - FreeProxyGo
   - Trojan - FreeProxyGo1
   - Trojan - FreeProxyGo2
+  - SS - FreeProxyGo
   type: select
 rule-providers: {}
 rules:
