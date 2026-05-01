@@ -13,19 +13,12 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 54.199.8.75
-  type: ss
-  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com
   network: ws
   port: 6868
-  server: 43.203.241.196
+  server: 54.199.8.75
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -36,12 +29,19 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
+  server: 43.203.241.196
+  type: ss
+  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com1
   network: ws
   port: 6868
-  server: 54.199.8.75
+  server: 43.203.241.196
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -55,7 +55,7 @@ proxies:
 - name: Trojan - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
-  server: 43.203.241.196
+  server: 54.199.8.75
   servername: baidu.com#end-gfw.com
   skip-cert-verify: false
   type: trojan
@@ -64,13 +64,13 @@ proxies:
   name: SS - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6666
-  server: 43.203.241.196
+  server: 54.199.8.75
   type: ss
   udp: true
 - name: Trojan - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
-  server: 54.199.8.75
+  server: 43.203.241.196
   servername: baidu.com#end-gfw.com
   skip-cert-verify: false
   type: trojan
@@ -114,32 +114,6 @@ proxies:
   sni: www.microsoft.com
   type: hysteria2
   udp: false
-- name: VLESS - FreeProxyGo
-  network: ws
-  port: 32312
-  server: 210.103.67.11
-  servername: eiti60o44la.bsld.de5.net
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 00000000-0000-4000-8000-000000000000
-  ws-opts:
-    headers:
-      Host: eiti60o44la.bsld.de5.net
-- alterId: 0
-  cipher: auto
-  name: 🇭🇰中国香港 - FreeProxyGo
-  network: tcp
-  port: 51556
-  server: 103.181.164.145
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  ws-opts:
-    path: /
 - name: Trojan - FreeProxyGo
   network: ws
   password: Aimer
@@ -153,6 +127,45 @@ proxies:
     headers:
       Host: epge.muarua.filegear-sg.me
     path: /#HK中国香港(ProxyGo免费节点分享)
+- name: VLESS - FreeProxyGo
+  network: ws
+  port: 32312
+  server: 210.103.67.11
+  servername: eiti60o44la.bsld.de5.net
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 00000000-0000-4000-8000-000000000000
+  ws-opts:
+    headers:
+      Host: eiti60o44la.bsld.de5.net
+- name: VLESS - FreeProxyGo1
+  network: ws
+  port: 30032
+  server: 59.24.2.248
+  servername: eiti60o44la.bsld.de5.net
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 00000000-0000-4000-8000-000000000000
+  ws-opts:
+    headers:
+      Host: eiti60o44la.bsld.de5.net
+- name: VLESS - FreeProxyGo2
+  network: ws
+  port: 30016
+  server: 110.35.234.200
+  servername: rcv3tz9brscasef8i.sate.qzz.io
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 00000000-0000-4000-8000-000000000000
+  ws-opts:
+    headers:
+      Host: rcv3tz9brscasef8i.sate.qzz.io
 - alterId: 0
   cipher: auto
   name: 🇩🇪德国 - FreeProxyGo
@@ -166,32 +179,19 @@ proxies:
   uuid: d13fc2f5-3e05-4795-81eb-44143a09e552
   ws-opts:
     path: /
-- name: VLESS - FreeProxyGo1
-  network: ws
-  port: 30016
-  server: 110.35.234.200
-  servername: rcv3tz9brscasef8i.sate.qzz.io
+- alterId: 0
+  cipher: auto
+  name: 🇭🇰中国香港 - FreeProxyGo
+  network: tcp
+  port: 51556
+  server: 103.181.164.145
   skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 00000000-0000-4000-8000-000000000000
+  tls: false
+  type: vmess
+  udp: true
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
   ws-opts:
-    headers:
-      Host: rcv3tz9brscasef8i.sate.qzz.io
-- name: VLESS - FreeProxyGo2
-  network: ws
-  port: 30032
-  server: 59.24.2.248
-  servername: eiti60o44la.bsld.de5.net
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 00000000-0000-4000-8000-000000000000
-  ws-opts:
-    headers:
-      Host: eiti60o44la.bsld.de5.net
+    path: /
 proxy-groups:
 - name: FREE-PROXY
   proxies:
@@ -199,8 +199,8 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
-  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
@@ -208,18 +208,18 @@ proxy-groups:
   - vmess-ws-ipv6 - fanqiang
   - VLESS - fanqiang
   - Hysteria2 - fanqiang
-  - VLESS - FreeProxyGo
-  - 🇭🇰中国香港 - FreeProxyGo
   - Trojan - FreeProxyGo
-  - 🇩🇪德国 - FreeProxyGo
+  - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
   - VLESS - FreeProxyGo2
+  - 🇩🇪德国 - FreeProxyGo
+  - 🇭🇰中国香港 - FreeProxyGo
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
-  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
@@ -227,19 +227,19 @@ proxy-groups:
   - vmess-ws-ipv6 - fanqiang
   - VLESS - fanqiang
   - Hysteria2 - fanqiang
-  - VLESS - FreeProxyGo
-  - 🇭🇰中国香港 - FreeProxyGo
   - Trojan - FreeProxyGo
-  - 🇩🇪德国 - FreeProxyGo
+  - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
   - VLESS - FreeProxyGo2
+  - 🇩🇪德国 - FreeProxyGo
+  - 🇭🇰中国香港 - FreeProxyGo
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
-  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
@@ -253,12 +253,12 @@ proxy-groups:
   type: select
 - name: Github - junjun266/FreeProxyGo
   proxies:
-  - VLESS - FreeProxyGo
-  - 🇭🇰中国香港 - FreeProxyGo
   - Trojan - FreeProxyGo
-  - 🇩🇪德国 - FreeProxyGo
+  - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
   - VLESS - FreeProxyGo2
+  - 🇩🇪德国 - FreeProxyGo
+  - 🇭🇰中国香港 - FreeProxyGo
   type: select
 rule-providers: {}
 rules:
