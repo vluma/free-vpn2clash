@@ -13,14 +13,13 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
-- name: Trojan - raw.githubusercontent.com
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
+  port: 6666
   server: 43.203.241.196
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
+  type: ss
+  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com
@@ -38,23 +37,24 @@ proxies:
       Host: end-gfw.com
     path: /
 - cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 43.203.241.196
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
   name: SS - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6666
   server: 54.199.8.75
   type: ss
   udp: true
-- name: Trojan - raw.githubusercontent.com1
+- name: Trojan - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
   server: 54.199.8.75
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
+  udp: false
+- name: Trojan - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6668
+  server: 43.203.241.196
   servername: baidu.com#end-gfw.com
   skip-cert-verify: false
   type: trojan
@@ -75,14 +75,6 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
-- insecure: false
-  name: Hysteria2 - fanqiang
-  password: github.com%2FAlvin9999-newpac%2Ffanqiang
-  port: 12855
-  server: 83.243.86.103
-  sni: www.microsoft.com
-  type: hysteria2
-  udp: false
 - alterId: 0
   cipher: auto
   name: vmess-ws-ipv6 - fanqiang
@@ -114,47 +106,20 @@ proxies:
   type: vless
   udp: false
   uuid: ac121f97-544b-47b3-bf91-eca9c45db548
-- cipher: chacha20-ietf-poly1305
-  name: SS - FreeProxyGo
-  password: wwzVn2ZnHfqYa6l8EWh3eY
-  port: 443
-  server: switcher-nick-croquet.freesocks.work
-  type: ss
-  udp: true
-- alterId: 0
-  cipher: auto
-  name: GB英国(ProxyGo免费节点分享) - FreeProxyGo
-  network: tcp
-  port: 180
-  server: 82.198.246.97
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: d13fc2f5-3e05-4795-81eb-44143a09e552
-  ws-opts:
-    headers:
-      Host: bbbbbbbbb.222769.xyz
-    path: /f6taOMcOSZb9TPR
+- insecure: false
+  name: Hysteria2 - fanqiang
+  password: github.com%2FAlvin9999-newpac%2Ffanqiang
+  port: 29900
+  server: 178.18.147.66
+  sni: www.microsoft.com
+  type: hysteria2
+  udp: false
 - alterId: 0
   cipher: auto
   name: 🇩🇪德国 - FreeProxyGo
   network: tcp
   port: 180
   server: 82.198.246.233
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: d13fc2f5-3e05-4795-81eb-44143a09e552
-  ws-opts:
-    path: /
-- alterId: 0
-  cipher: auto
-  name: 🇩🇪德国 - FreeProxyGo1
-  network: tcp
-  port: 180
-  server: 82.198.246.250
   skip-cert-verify: true
   tls: false
   type: vmess
@@ -175,6 +140,41 @@ proxies:
   ws-opts:
     headers:
       Host: sni.111000.dns.army
+- alterId: 0
+  cipher: auto
+  name: GB英国(ProxyGo免费节点分享) - FreeProxyGo
+  network: tcp
+  port: 180
+  server: 82.198.246.97
+  skip-cert-verify: true
+  tls: false
+  type: vmess
+  udp: true
+  uuid: d13fc2f5-3e05-4795-81eb-44143a09e552
+  ws-opts:
+    headers:
+      Host: broadcastlv.chat.bilibili.com
+    path: /
+- alterId: 0
+  cipher: auto
+  name: 🇩🇪德国 - FreeProxyGo1
+  network: tcp
+  port: 180
+  server: 82.198.246.250
+  skip-cert-verify: true
+  tls: false
+  type: vmess
+  udp: true
+  uuid: d13fc2f5-3e05-4795-81eb-44143a09e552
+  ws-opts:
+    path: /
+- cipher: chacha20-ietf-poly1305
+  name: SS - FreeProxyGo
+  password: wwzVn2ZnHfqYa6l8EWh3eY
+  port: 443
+  server: switcher-nick-croquet.freesocks.work
+  type: ss
+  udp: true
 proxy-groups:
 - name: FREE-PROXY
   proxies:
@@ -182,63 +182,63 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
-  - Trojan - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
+  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
-  - Hysteria2 - fanqiang
   - vmess-ws-ipv6 - fanqiang
   - VLESS - fanqiang
-  - SS - FreeProxyGo
-  - GB英国(ProxyGo免费节点分享) - FreeProxyGo
+  - Hysteria2 - fanqiang
   - 🇩🇪德国 - FreeProxyGo
-  - 🇩🇪德国 - FreeProxyGo1
   - VLESS - FreeProxyGo
+  - GB英国(ProxyGo免费节点分享) - FreeProxyGo
+  - 🇩🇪德国 - FreeProxyGo1
+  - SS - FreeProxyGo
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
-  - Trojan - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
+  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
-  - Hysteria2 - fanqiang
   - vmess-ws-ipv6 - fanqiang
   - VLESS - fanqiang
-  - SS - FreeProxyGo
-  - GB英国(ProxyGo免费节点分享) - FreeProxyGo
+  - Hysteria2 - fanqiang
   - 🇩🇪德国 - FreeProxyGo
-  - 🇩🇪德国 - FreeProxyGo1
   - VLESS - FreeProxyGo
+  - GB英国(ProxyGo免费节点分享) - FreeProxyGo
+  - 🇩🇪德国 - FreeProxyGo1
+  - SS - FreeProxyGo
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
-  - Trojan - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
+  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
   type: select
 - name: Github - Alvin9999-newpac/fanqiang
   proxies:
-  - Hysteria2 - fanqiang
   - vmess-ws-ipv6 - fanqiang
   - VLESS - fanqiang
+  - Hysteria2 - fanqiang
   type: select
 - name: Github - junjun266/FreeProxyGo
   proxies:
-  - SS - FreeProxyGo
-  - GB英国(ProxyGo免费节点分享) - FreeProxyGo
   - 🇩🇪德国 - FreeProxyGo
-  - 🇩🇪德国 - FreeProxyGo1
   - VLESS - FreeProxyGo
+  - GB英国(ProxyGo免费节点分享) - FreeProxyGo
+  - 🇩🇪德国 - FreeProxyGo1
+  - SS - FreeProxyGo
   type: select
 rule-providers: {}
 rules:
