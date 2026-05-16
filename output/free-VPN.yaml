@@ -13,6 +13,14 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
+- name: Trojan - raw.githubusercontent.com
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6668
+  server: 43.203.241.196
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
+  udp: false
 - cipher: chacha20-ietf-poly1305
   name: SS - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
@@ -20,7 +28,7 @@ proxies:
   server: 54.199.8.75
   type: ss
   udp: true
-- name: Trojan - raw.githubusercontent.com
+- name: Trojan - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
   server: 54.199.8.75
@@ -44,14 +52,13 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
-- name: Trojan - raw.githubusercontent.com1
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
+  port: 6666
   server: 43.203.241.196
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
+  type: ss
+  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com1
@@ -68,13 +75,6 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com1
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 43.203.241.196
-  type: ss
-  udp: true
 - insecure: false
   name: Hysteria2 - fanqiang
   password: github.com%2FAlvin9999-newpac%2Ffanqiang
@@ -124,19 +124,6 @@ proxies:
 - name: VLESS - FreeProxyGo
   network: ws
   port: 443
-  server: 47.84.95.77
-  servername: gogo.wknm.dpdns.org
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: ce069292-c8bf-40dd-a6b1-87818a1e64e9
-  ws-opts:
-    headers:
-      Host: gogo.wknm.dpdns.org
-- name: VLESS - FreeProxyGo1
-  network: ws
-  port: 443
   server: 141.11.43.124
   servername: babayaga-6i7.pages.dev
   skip-cert-verify: true
@@ -147,6 +134,19 @@ proxies:
   ws-opts:
     headers:
       Host: babayaga-6i7.pages.dev
+- name: VLESS - FreeProxyGo1
+  network: ws
+  port: 443
+  server: 47.84.95.77
+  servername: gogo.wknm.dpdns.org
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: ce069292-c8bf-40dd-a6b1-87818a1e64e9
+  ws-opts:
+    headers:
+      Host: gogo.wknm.dpdns.org
 proxy-groups:
 - name: FREE-PROXY
   proxies:
@@ -154,12 +154,12 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
-  - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - end-gfw.com - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com1
   - Hysteria2 - fanqiang
   - VLESS - fanqiang
   - vmess-ws-ipv6 - fanqiang
@@ -170,12 +170,12 @@ proxy-groups:
 - interval: 300
   name: AUTO-SWITCH
   proxies:
-  - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - end-gfw.com - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com1
   - Hysteria2 - fanqiang
   - VLESS - fanqiang
   - vmess-ws-ipv6 - fanqiang
@@ -187,12 +187,12 @@ proxy-groups:
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
-  - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - end-gfw.com - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com1
   type: select
 - name: Github - Alvin9999-newpac/fanqiang
   proxies:
