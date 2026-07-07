@@ -13,21 +13,6 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 43.203.241.196
-  type: ss
-  udp: true
-- name: Trojan - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
-  server: 43.203.241.196
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com
@@ -45,7 +30,7 @@ proxies:
       Host: end-gfw.com
     path: /
 - cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com1
+  name: SS - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6666
   server: 54.199.8.75
@@ -67,6 +52,21 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
+  server: 43.203.241.196
+  type: ss
+  udp: true
+- name: Trojan - raw.githubusercontent.com
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6668
+  server: 43.203.241.196
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
+  udp: false
 - name: Trojan - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
@@ -75,19 +75,6 @@ proxies:
   skip-cert-verify: false
   type: trojan
   udp: false
-- alterId: 0
-  cipher: auto
-  name: vmess-ws-ipv6 - fanqiang
-  network: ws
-  port: 55009
-  server: 2001:bc8:32d7:225::3
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: cd80d0a4-a8ef-4492-b956-da82a6cecaf9
-  ws-opts:
-    path: /0zNW56sF
 - client-fingerprint: chrome
   http-opts:
     method: GET
@@ -106,33 +93,20 @@ proxies:
   type: vless
   udp: false
   uuid: 4e9a2de3-4193-49a9-b7fb-b5fff8479904
+- alterId: 0
+  cipher: auto
+  name: vmess-ws-ipv6 - fanqiang
+  network: ws
+  port: 55009
+  server: 2001:bc8:32d7:225::3
+  skip-cert-verify: true
+  tls: false
+  type: vmess
+  udp: true
+  uuid: cd80d0a4-a8ef-4492-b956-da82a6cecaf9
+  ws-opts:
+    path: /0zNW56sF
 - name: VLESS - FreeProxyGo
-  network: ws
-  port: 443
-  server: 162.159.43.131
-  servername: ld.223350.xyz
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 407ecce0-dc85-465f-89f5-e520e9378baf
-  ws-opts:
-    headers:
-      Host: ld.223350.xyz
-- name: VLESS - FreeProxyGo1
-  network: ws
-  port: 8443
-  server: 162.159.21.235
-  servername: t1s1.rittbo.kdns.fr
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: eeb6823c-b926-4ea2-866a-5542edd26e59
-  ws-opts:
-    headers:
-      Host: t1s1.rittbo.kdns.fr
-- name: VLESS - FreeProxyGo2
   network: ws
   port: 11011
   server: 13.113.200.38
@@ -145,10 +119,10 @@ proxies:
   ws-opts:
     headers:
       Host: 7nnoiou0z.3xn99hzq2sh7iekktpkeq7rofs3qc8iohrqs4pb9p.workers.dev
-- name: VLESS - FreeProxyGo3
+- name: VLESS - FreeProxyGo1
   network: ws
   port: 443
-  server: 162.159.8.42
+  server: 108.162.196.3
   servername: t1s1.rittbo.kdns.fr
   skip-cert-verify: true
   tls: true
@@ -158,7 +132,7 @@ proxies:
   ws-opts:
     headers:
       Host: t1s1.rittbo.kdns.fr
-- name: VLESS - FreeProxyGo4
+- name: VLESS - FreeProxyGo2
   network: ws
   port: 443
   server: cf.877774.xyz
@@ -171,10 +145,36 @@ proxies:
   ws-opts:
     headers:
       Host: t1s1.rittbo.kdns.fr
+- name: VLESS - FreeProxyGo3
+  network: ws
+  port: 443
+  server: 162.159.43.131
+  servername: ld.223350.xyz
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 407ecce0-dc85-465f-89f5-e520e9378baf
+  ws-opts:
+    headers:
+      Host: ld.223350.xyz
+- name: VLESS - FreeProxyGo4
+  network: ws
+  port: 8443
+  server: 162.159.21.235
+  servername: t1s1.rittbo.kdns.fr
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: eeb6823c-b926-4ea2-866a-5542edd26e59
+  ws-opts:
+    headers:
+      Host: t1s1.rittbo.kdns.fr
 - name: VLESS - FreeProxyGo5
   network: ws
   port: 443
-  server: 108.162.196.3
+  server: 162.159.8.42
   servername: t1s1.rittbo.kdns.fr
   skip-cert-verify: true
   tls: true
@@ -191,14 +191,14 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
-  - SS - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - vmess-ws-ipv6 - fanqiang
   - VLESS - fanqiang
+  - vmess-ws-ipv6 - fanqiang
   - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
   - VLESS - FreeProxyGo2
@@ -209,14 +209,14 @@ proxy-groups:
 - interval: 300
   name: AUTO-SWITCH
   proxies:
-  - SS - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - vmess-ws-ipv6 - fanqiang
   - VLESS - fanqiang
+  - vmess-ws-ipv6 - fanqiang
   - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
   - VLESS - FreeProxyGo2
@@ -228,17 +228,17 @@ proxy-groups:
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
-  - SS - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
   type: select
 - name: Github - Alvin9999-newpac/fanqiang
   proxies:
-  - vmess-ws-ipv6 - fanqiang
   - VLESS - fanqiang
+  - vmess-ws-ipv6 - fanqiang
   type: select
 - name: Github - junjun266/FreeProxyGo
   proxies:
