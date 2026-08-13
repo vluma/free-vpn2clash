@@ -13,6 +13,13 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
+  server: 43.203.241.196
+  type: ss
+  udp: true
 - name: Trojan - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
@@ -22,20 +29,12 @@ proxies:
   type: trojan
   udp: false
 - cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com
+  name: SS - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6666
   server: 54.199.8.75
   type: ss
   udp: true
-- name: Trojan - raw.githubusercontent.com1
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
-  server: 43.203.241.196
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com
@@ -68,13 +67,14 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com1
+- name: Trojan - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
+  port: 6668
   server: 43.203.241.196
-  type: ss
-  udp: true
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
+  udp: false
 - alterId: 0
   cipher: auto
   name: vmess-ws-ipv6 - fanqiang
@@ -106,117 +106,48 @@ proxies:
   type: vless
   udp: false
   uuid: 2567e2e0-8d4c-4c51-aee9-5d1f36024472
-- name: VLESS - FreeProxyGo
-  network: tcp
-  port: 62145
-  server: 149.130.183.255
-  skip-cert-verify: true
-  tls: false
-  type: vless
-  udp: false
-  uuid: 8fb65472-5957-4f64-ba2d-b5812b2f155a
-- name: VLESS - FreeProxyGo1
-  network: tcp
-  port: 62145
-  server: 149.130.175.159
-  skip-cert-verify: true
-  tls: false
-  type: vless
-  udp: false
-  uuid: 8fb65472-5957-4f64-ba2d-b5812b2f155a
-- name: VLESS - FreeProxyGo2
-  network: tcp
-  port: 62145
-  server: 158.247.124.143
-  skip-cert-verify: true
-  tls: false
-  type: vless
-  udp: false
-  uuid: 8fb65472-5957-4f64-ba2d-b5812b2f155a
-- name: VLESS - FreeProxyGo3
-  network: tcp
-  port: 62145
-  server: 149.130.189.152
-  skip-cert-verify: true
-  tls: false
-  type: vless
-  udp: false
-  uuid: 8fb65472-5957-4f64-ba2d-b5812b2f155a
-- client-fingerprint: firefox
-  name: VLESS - FreeProxyGo4
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: V9MHR6nhlKPenVUq1172uIHJFZYOkRVqSOUkjCS4430
-    short-id: f0ba53a31b489b3e
-  server: glidio.shieldix.top
-  servername: glidio.shieldix.top
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: e3c40721-22bc-4862-a358-09502fc14af6
 proxy-groups:
 - name: FREE-PROXY
   proxies:
   - AUTO-SWITCH
   - raw.githubusercontent.com
   - Github - Alvin9999-newpac/fanqiang
-  - Github - junjun266/FreeProxyGo
-  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
-  - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com1
   - vmess-ws-ipv6 - fanqiang
   - VLESS - fanqiang
-  - VLESS - FreeProxyGo
-  - VLESS - FreeProxyGo1
-  - VLESS - FreeProxyGo2
-  - VLESS - FreeProxyGo3
-  - VLESS - FreeProxyGo4
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
-  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
-  - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com1
   - vmess-ws-ipv6 - fanqiang
   - VLESS - fanqiang
-  - VLESS - FreeProxyGo
-  - VLESS - FreeProxyGo1
-  - VLESS - FreeProxyGo2
-  - VLESS - FreeProxyGo3
-  - VLESS - FreeProxyGo4
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
-  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
-  - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com1
   type: select
 - name: Github - Alvin9999-newpac/fanqiang
   proxies:
   - vmess-ws-ipv6 - fanqiang
   - VLESS - fanqiang
-  type: select
-- name: Github - junjun266/FreeProxyGo
-  proxies:
-  - VLESS - FreeProxyGo
-  - VLESS - FreeProxyGo1
-  - VLESS - FreeProxyGo2
-  - VLESS - FreeProxyGo3
-  - VLESS - FreeProxyGo4
   type: select
 rule-providers: {}
 rules:
