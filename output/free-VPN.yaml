@@ -13,6 +13,20 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
+  server: 54.199.8.75
+  type: ss
+  udp: true
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
+  server: 43.203.241.196
+  type: ss
+  udp: true
 - name: Trojan - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
@@ -29,19 +43,12 @@ proxies:
   skip-cert-verify: false
   type: trojan
   udp: false
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 43.203.241.196
-  type: ss
-  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com
   network: ws
   port: 6868
-  server: 54.199.8.75
+  server: 43.203.241.196
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -52,19 +59,12 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com1
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 54.199.8.75
-  type: ss
-  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com1
   network: ws
   port: 6868
-  server: 43.203.241.196
+  server: 54.199.8.75
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -88,76 +88,56 @@ proxies:
   uuid: 3a966d20-7b9d-48cc-ba2c-8d38161b6d3a
   ws-opts:
     path: /github.com/Alvin9999-newpac/fanqiang
-- name: Trojan - FreeProxyGo
-  network: ws
-  password: humanity
-  port: 443
-  server: 172.67.149.60
-  servername: www.ignitelimit.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
-  ws-opts:
-    path: /assignment#US美国(ProxyGo免费节点分享)
-- client-fingerprint: chrome
+- alpn:
+  - h2
+  http-opts:
+    headers:
+      Host: dey.lnmarketplace.net
+    method: GET
+    path:
+    - /kavir
   name: VLESS - FreeProxyGo
+  network: http
+  port: 443
+  server: dey.lnmarketplace.net
+  servername: dey.lnmarketplace.net
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 3536e1fa-0850-44d1-b123-925ce12476cf
+- client-fingerprint: chrome
+  name: VLESS - FreeProxyGo1
   network: tcp
   port: 443
   reality-opts:
-    public-key: l4tGdE5Zn8ABfBQns3pRBcxy6CckHTLSIsw5JaBumTk
-    short-id: c9d4bf8d94ec8dab
-  server: 34.95.28.161
+    public-key: hJCcmOf_ECJ3GUfHUjsgfcFKcgGb22H7cz_m_FvcVm4
+    short-id: eb97ce837da2f6ad
+  server: 35.185.179.62
   servername: www.cloudflare.com
   skip-cert-verify: true
   tls: true
   type: vless
   udp: false
-  uuid: 448b76ac-c636-4303-bec1-0b2c22afee0c
-- insecure: false
-  name: Hysteria2 - FreeProxyGo
-  obfs: salamander
-  obfs-password: C0DD7bgChaltqnh/T2az6ijM
-  password: C0DD7bgChaltqnh/T2az6ijM
-  port: 20000
-  server: 193.122.115.52
-  sni: rmgyvpn.rest
-  type: hysteria2
-  udp: false
-- name: Trojan - FreeProxyGo1
-  network: ws
-  password: humanity
+  uuid: 5567cac6-2a32-4318-83cd-7df3a9eebbd7
+- alpn:
+  - h2
+  http-opts:
+    headers:
+      Host: dey.lnmarketplace.net
+    method: GET
+    path:
+    - /kavir
+  name: VLESS - FreeProxyGo3
+  network: http
   port: 443
-  server: join-telegram-channel-tirexnet.trex.kdns.fr
-  servername: www.ignitelimit.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
-  ws-opts:
-    path: /assignment#FR法国(ProxyGo免费节点分享)
-- name: Trojan - FreeProxyGo2
-  network: ws
-  password: humanity
-  port: 443
-  server: join-telegram-channel.tirexnet.kdns.fr
-  servername: www.ignitelimit.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
-  ws-opts:
-    path: /assignment#FR法国(ProxyGo免费节点分享)
-- name: VLESS - FreeProxyGo1
-  network: ws
-  port: 443
-  server: 158.247.222.168
-  servername: spjd.cbc.qzz.io
+  server: '[2a14:3f87:f001:46::a]'
+  servername: dey.lnmarketplace.net
   skip-cert-verify: true
   tls: true
   type: vless
   udp: false
-  uuid: 37665857-8b6e-4daa-8231-3e2927221558
-  ws-opts:
-    headers:
-      Host: spjd.cbc.qzz.io
+  uuid: 3536e1fa-0850-44d1-b123-925ce12476cf
 proxy-groups:
 - name: FREE-PROXY
   proxies:
@@ -165,46 +145,40 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
+  - SS - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
   - vmess-ws-ipv6 - fanqiang
-  - Trojan - FreeProxyGo
   - VLESS - FreeProxyGo
-  - Hysteria2 - FreeProxyGo
-  - Trojan - FreeProxyGo1
-  - Trojan - FreeProxyGo2
   - VLESS - FreeProxyGo1
+  - VLESS - FreeProxyGo3
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
+  - SS - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
   - vmess-ws-ipv6 - fanqiang
-  - Trojan - FreeProxyGo
   - VLESS - FreeProxyGo
-  - Hysteria2 - FreeProxyGo
-  - Trojan - FreeProxyGo1
-  - Trojan - FreeProxyGo2
   - VLESS - FreeProxyGo1
+  - VLESS - FreeProxyGo3
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
+  - SS - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
   type: select
 - name: Github - Alvin9999-newpac/fanqiang
@@ -213,12 +187,9 @@ proxy-groups:
   type: select
 - name: Github - junjun266/FreeProxyGo
   proxies:
-  - Trojan - FreeProxyGo
   - VLESS - FreeProxyGo
-  - Hysteria2 - FreeProxyGo
-  - Trojan - FreeProxyGo1
-  - Trojan - FreeProxyGo2
   - VLESS - FreeProxyGo1
+  - VLESS - FreeProxyGo3
   type: select
 rule-providers: {}
 rules:
