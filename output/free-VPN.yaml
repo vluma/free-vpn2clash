@@ -18,22 +18,6 @@ proxies:
   name: end-gfw.com - raw.githubusercontent.com
   network: ws
   port: 6868
-  server: 54.199.8.75
-  servername: baidu.com
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  ws-opts:
-    headers:
-      Host: end-gfw.com
-    path: /
-- alterId: 0
-  cipher: auto
-  name: end-gfw.com - raw.githubusercontent.com1
-  network: ws
-  port: 6868
   server: 43.203.241.196
   servername: baidu.com
   skip-cert-verify: true
@@ -52,14 +36,6 @@ proxies:
   server: 43.203.241.196
   type: ss
   udp: true
-- name: Trojan - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
-  server: 43.203.241.196
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
 - cipher: chacha20-ietf-poly1305
   name: SS - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
@@ -67,7 +43,7 @@ proxies:
   server: 54.199.8.75
   type: ss
   udp: true
-- name: Trojan - raw.githubusercontent.com1
+- name: Trojan - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
   server: 54.199.8.75
@@ -75,6 +51,30 @@ proxies:
   skip-cert-verify: false
   type: trojan
   udp: false
+- name: Trojan - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6668
+  server: 43.203.241.196
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
+  udp: false
+- alterId: 0
+  cipher: auto
+  name: end-gfw.com - raw.githubusercontent.com1
+  network: ws
+  port: 6868
+  server: 54.199.8.75
+  servername: baidu.com
+  skip-cert-verify: true
+  tls: false
+  type: vmess
+  udp: true
+  uuid: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  ws-opts:
+    headers:
+      Host: end-gfw.com
+    path: /
 - alterId: 0
   cipher: auto
   name: vmess-ws-ipv6 - fanqiang
@@ -89,11 +89,11 @@ proxies:
   ws-opts:
     path: /github.com/Alvin9999-newpac/fanqiang
 - alpn:
-  - h3%2Ch2
+  - http%2F1.1
   name: VLESS - FreeProxyGo
   network: ws
   port: 443
-  server: 162.159.135.234
+  server: www.speedtest.net
   servername: snip.edgeoneai.cc.cd
   skip-cert-verify: true
   tls: true
@@ -106,7 +106,7 @@ proxies:
 - name: VLESS - FreeProxyGo1
   network: ws
   port: 443
-  server: saas.sin.fan
+  server: 162.159.135.234
   servername: snip.edgeoneai.cc.cd
   skip-cert-verify: true
   tls: true
@@ -116,12 +116,10 @@ proxies:
   ws-opts:
     headers:
       Host: snip.edgeoneai.cc.cd
-- alpn:
-  - http%2F1.1
-  name: VLESS - FreeProxyGo2
+- name: VLESS - FreeProxyGo2
   network: ws
   port: 443
-  server: www.speedtest.net
+  server: saas.sin.fan
   servername: snip.edgeoneai.cc.cd
   skip-cert-verify: true
   tls: true
@@ -139,11 +137,11 @@ proxy-groups:
   - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
   - end-gfw.com - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com1
   - vmess-ws-ipv6 - fanqiang
   - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
@@ -153,11 +151,11 @@ proxy-groups:
   name: AUTO-SWITCH
   proxies:
   - end-gfw.com - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com1
   - vmess-ws-ipv6 - fanqiang
   - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
@@ -168,11 +166,11 @@ proxy-groups:
 - name: raw.githubusercontent.com
   proxies:
   - end-gfw.com - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com1
   type: select
 - name: Github - Alvin9999-newpac/fanqiang
   proxies:
