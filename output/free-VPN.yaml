@@ -13,28 +13,14 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 54.199.8.75
-  type: ss
-  udp: true
 - name: Trojan - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
-  server: 54.199.8.75
+  server: 43.203.241.196
   servername: baidu.com#end-gfw.com
   skip-cert-verify: false
   type: trojan
   udp: false
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com1
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 43.203.241.196
-  type: ss
-  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com
@@ -51,14 +37,28 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
+  server: 43.203.241.196
+  type: ss
+  udp: true
 - name: Trojan - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
-  server: 43.203.241.196
+  server: 54.199.8.75
   servername: baidu.com#end-gfw.com
   skip-cert-verify: false
   type: trojan
   udp: false
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
+  server: 54.199.8.75
+  type: ss
+  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com1
@@ -88,23 +88,24 @@ proxies:
   uuid: 3a966d20-7b9d-48cc-ba2c-8d38161b6d3a
   ws-opts:
     path: /github.com/Alvin9999-newpac/fanqiang
-- name: VLESS - FreeProxyGo
-  network: ws
+- client-fingerprint: chrome
+  name: VLESS - FreeProxyGo
+  network: tcp
   port: 443
-  server: 207.57.133.165
-  servername: snip.edgeoneai.cc.cd
+  reality-opts:
+    public-key: jcp4Lj_qYzxtkalm_XFjrmvqEMGRG7sb19yMwLe16WE
+    short-id: e0215064d8d1fd7c
+  server: 78.17.178.125
+  servername: cdn.tbank.ru
   skip-cert-verify: true
   tls: true
   type: vless
   udp: false
-  uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-  ws-opts:
-    headers:
-      Host: snip.edgeoneai.cc.cd
+  uuid: 6c713691-3ca2-4446-ad25-113d1bed6b03
 - name: VLESS - FreeProxyGo1
   network: ws
   port: 443
-  server: 207.57.132.76
+  server: 104.17.147.22
   servername: snip.edgeoneai.cc.cd
   skip-cert-verify: true
   tls: true
@@ -114,23 +115,26 @@ proxies:
   ws-opts:
     headers:
       Host: snip.edgeoneai.cc.cd
-- name: VLESS - FreeProxyGo2
+- client-fingerprint: chrome
+  name: VLESS - FreeProxyGo2
+  network: tcp
+  port: 47881
+  reality-opts:
+    public-key: 6XmXX1QXGodmtqU37Zx9CDHnCnPtonRdq8ieLmt__g4
+    short-id: 38d72071
+  server: 134.185.81.5
+  servername: www.tesla.com
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 59b203b2-b1bc-4e9c-a9e5-ccb8f691bf72
+- alpn:
+  - http%2F1.1
+  name: VLESS - FreeProxyGo3
   network: ws
   port: 443
-  server: 68.64.178.52
-  servername: snip.edgeoneai.cc.cd
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-  ws-opts:
-    headers:
-      Host: snip.edgeoneai.cc.cd
-- name: VLESS - FreeProxyGo3
-  network: ws
-  port: 8443
-  server: 69.8.128.249
+  server: 104.19.45.195
   servername: snip.edgeoneai.cc.cd
   skip-cert-verify: true
   tls: true
@@ -143,7 +147,7 @@ proxies:
 - name: VLESS - FreeProxyGo4
   network: ws
   port: 443
-  server: 45.136.14.153
+  server: 43.174.195.1
   servername: snip.edgeoneai.cc.cd
   skip-cert-verify: true
   tls: true
@@ -156,7 +160,7 @@ proxies:
 - name: VLESS - FreeProxyGo5
   network: ws
   port: 443
-  server: 45.8.173.115
+  server: 172.64.144.100
   servername: snip.edgeoneai.cc.cd
   skip-cert-verify: true
   tls: true
@@ -173,11 +177,11 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
-  - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
   - vmess-ws-ipv6 - fanqiang
   - VLESS - FreeProxyGo
@@ -190,11 +194,11 @@ proxy-groups:
 - interval: 300
   name: AUTO-SWITCH
   proxies:
-  - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
   - vmess-ws-ipv6 - fanqiang
   - VLESS - FreeProxyGo
@@ -208,11 +212,11 @@ proxy-groups:
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
-  - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com1
   type: select
 - name: Github - Alvin9999-newpac/fanqiang
