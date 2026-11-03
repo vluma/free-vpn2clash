@@ -13,14 +13,13 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
-- name: Trojan - raw.githubusercontent.com
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
-  server: 54.199.8.75
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
+  port: 6666
+  server: 43.203.241.196
+  type: ss
+  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com
@@ -37,20 +36,6 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 54.199.8.75
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com1
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 43.203.241.196
-  type: ss
-  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com1
@@ -67,7 +52,14 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
-- name: Trojan - raw.githubusercontent.com1
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
+  server: 54.199.8.75
+  type: ss
+  udp: true
+- name: Trojan - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
   server: 43.203.241.196
@@ -75,78 +67,14 @@ proxies:
   skip-cert-verify: false
   type: trojan
   udp: false
-- insecure: false
-  name: Hysteria2 - FreeProxyGo
-  password: 69e41e64-a832-471a-b740-94577ca85520
-  port: 443
-  server: 217.60.73.56
-  sni: forshynewh.duckdns.org#(ProxyGo免费节点分享)
-  type: hysteria2
+- name: Trojan - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6668
+  server: 54.199.8.75
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
   udp: false
-- name: VLESS - FreeProxyGo
-  network: ws
-  port: 8880
-  server: 155.46.167.30
-  skip-cert-verify: true
-  tls: false
-  type: vless
-  udp: false
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  ws-opts:
-    headers:
-      Host: vms.lifetime50.workers.dev
-- client-fingerprint: chrome
-  name: VLESS - FreeProxyGo1
-  network: tcp
-  port: 59397
-  reality-opts:
-    public-key: 7w6m1Z7wZk1KX7bBlCi50t_8T-HdC8aMizOcIyqcaS4
-    short-id: '1430'
-  server: 185.44.64.166
-  servername: la.blogs.nvidia.com
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: ac36b6f8-d03d-46cb-808f-e655183fb76d
-- client-fingerprint: chrome
-  name: VLESS - FreeProxyGo2
-  network: tcp
-  port: 25362
-  reality-opts:
-    public-key: hFee7zTreqlv_wccK_8zxN5v23hj9u-DshByvGf-KAA
-    short-id: 23732d14a527990d
-  server: de15.h1cloud.net
-  servername: www.chip.de
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 36fb6650-8a50-42b5-9f66-06538806f32c
-- insecure: false
-  name: Hysteria2 - FreeProxyGo1
-  password: 69e41e64-a832-471a-b740-94577ca85520
-  port: 443
-  server: forshynewh.duckdns.org
-  sni: forshynewh.duckdns.org#(ProxyGo免费节点分享)
-  type: hysteria2
-  udp: false
-- http-opts:
-    headers:
-      Host: dey.lnmarketplace.net
-    method: GET
-    path:
-    - '%2Fkavir'
-  name: VLESS - FreeProxyGo3
-  network: http
-  port: 443
-  server: dey.lnmarketplace.net
-  servername: dey.lnmarketplace.net
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 3536e1fa-0850-44d1-b123-925ce12476cf
 - alterId: 0
   cipher: auto
   name: vmess-ws-ipv6 - fanqiang
@@ -160,67 +88,128 @@ proxies:
   uuid: 3a966d20-7b9d-48cc-ba2c-8d38161b6d3a
   ws-opts:
     path: /github.com/Alvin9999-newpac/fanqiang
+- grpc-opts:
+    grpc-service-name: a9w9wmko0k2od14hv8v
+  name: VLESS - FreeProxyGo
+  network: grpc
+  port: 443
+  server: 5.83.129.236
+  servername: host-de-upscale.cdn.cachefleet.com
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: d86e6fda-e519-46ab-98eb-9ff9a9da5984
+- name: VLESS - FreeProxyGo1
+  network: ws
+  port: 30021
+  server: 128.241.25.11
+  servername: kqjifhg9rw.tradsc8p9xp7wxyqmc1wy0ah.workers.dev
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 339cda3d-79a5-4d37-8ad8-eddc130c992a
+  ws-opts:
+    headers:
+      Host: kqjifhg9rw.tradsc8p9xp7wxyqmc1wy0ah.workers.dev
+- client-fingerprint: chrome
+  name: VLESS - FreeProxyGo2
+  network: tcp
+  port: 48312
+  reality-opts:
+    public-key: d9eM_jy8ztZrOf3DMq1m55VQSo7bnKcG1dRnO9ktJ2Y
+    short-id: 902c315efc
+  server: tunell2027.crackerbinam.org
+  servername: www.cloudflare.com
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: f47057d5-120d-4b42-b6d6-30469aef6813
+- name: VLESS - FreeProxyGo4
+  network: ws
+  port: 8880
+  server: 185.148.104.30
+  skip-cert-verify: true
+  tls: false
+  type: vless
+  udp: false
+  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
+  ws-opts:
+    headers:
+      Host: vms.lifetime51.workers.dev
+- name: VLESS - FreeProxyGo5
+  network: ws
+  port: 443
+  server: 188.164.248.110
+  servername: imanvipreserved.pages.dev
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 13134515-adc7-404b-8d2a-f9ad99e8dcbd
+  ws-opts:
+    headers:
+      Host: imanvipreserved.pages.dev
 proxy-groups:
 - name: FREE-PROXY
   proxies:
   - AUTO-SWITCH
   - raw.githubusercontent.com
-  - Github - junjun266/FreeProxyGo
   - Github - Alvin9999-newpac/fanqiang
-  - Trojan - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com
+  - Github - junjun266/FreeProxyGo
   - SS - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - Hysteria2 - FreeProxyGo
+  - vmess-ws-ipv6 - fanqiang
   - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
   - VLESS - FreeProxyGo2
-  - Hysteria2 - FreeProxyGo1
-  - VLESS - FreeProxyGo3
-  - vmess-ws-ipv6 - fanqiang
+  - VLESS - FreeProxyGo4
+  - VLESS - FreeProxyGo5
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
-  - Trojan - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  - Hysteria2 - FreeProxyGo
+  - vmess-ws-ipv6 - fanqiang
   - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
   - VLESS - FreeProxyGo2
-  - Hysteria2 - FreeProxyGo1
-  - VLESS - FreeProxyGo3
-  - vmess-ws-ipv6 - fanqiang
+  - VLESS - FreeProxyGo4
+  - VLESS - FreeProxyGo5
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
-  - Trojan - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
-  - SS - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
+  - SS - raw.githubusercontent.com1
+  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
-  type: select
-- name: Github - junjun266/FreeProxyGo
-  proxies:
-  - Hysteria2 - FreeProxyGo
-  - VLESS - FreeProxyGo
-  - VLESS - FreeProxyGo1
-  - VLESS - FreeProxyGo2
-  - Hysteria2 - FreeProxyGo1
-  - VLESS - FreeProxyGo3
   type: select
 - name: Github - Alvin9999-newpac/fanqiang
   proxies:
   - vmess-ws-ipv6 - fanqiang
+  type: select
+- name: Github - junjun266/FreeProxyGo
+  proxies:
+  - VLESS - FreeProxyGo
+  - VLESS - FreeProxyGo1
+  - VLESS - FreeProxyGo2
+  - VLESS - FreeProxyGo4
+  - VLESS - FreeProxyGo5
   type: select
 rule-providers: {}
 rules:
