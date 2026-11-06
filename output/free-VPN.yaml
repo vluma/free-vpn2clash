@@ -13,19 +13,12 @@ mode: Rule
 name: free-VPN
 port: 7890
 proxies:
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
-  server: 43.203.241.196
-  type: ss
-  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com
   network: ws
   port: 6868
-  server: 43.203.241.196
+  server: 54.199.8.75
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -36,12 +29,19 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
+  server: 54.199.8.75
+  type: ss
+  udp: true
 - alterId: 0
   cipher: auto
   name: end-gfw.com - raw.githubusercontent.com1
   network: ws
   port: 6868
-  server: 54.199.8.75
+  server: 43.203.241.196
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -72,7 +72,7 @@ proxies:
   name: SS - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6666
-  server: 54.199.8.75
+  server: 43.203.241.196
   type: ss
   udp: true
 - alterId: 0
@@ -89,6 +89,18 @@ proxies:
   ws-opts:
     path: /github.com/Alvin9999-newpac/fanqiang
 - name: VLESS - FreeProxyGo
+  network: ws
+  port: 8880
+  server: 155.46.167.30
+  skip-cert-verify: true
+  tls: false
+  type: vless
+  udp: false
+  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
+  ws-opts:
+    headers:
+      Host: vms.lifetime50.workers.dev
+- name: VLESS - FreeProxyGo1
   network: ws
   port: 443
   server: 172.64.149.88
@@ -108,18 +120,13 @@ proxies:
   server: 202.50.253.27
   type: ss
   udp: true
-- name: VLESS - FreeProxyGo1
-  network: ws
-  port: 8880
-  server: 155.46.167.30
-  skip-cert-verify: true
-  tls: false
-  type: vless
-  udp: false
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  ws-opts:
-    headers:
-      Host: vms.lifetime50.workers.dev
+- cipher: aes-256-gcm
+  name: SS - FreeProxyGo1
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  port: 19999
+  server: 202.50.253.81
+  type: ss
+  udp: true
 - name: VLESS - FreeProxyGo2
   network: ws
   port: 443
@@ -133,13 +140,6 @@ proxies:
   ws-opts:
     headers:
       Host: jp3.yohototo.top
-- cipher: aes-256-gcm
-  name: SS - FreeProxyGo1
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  port: 19999
-  server: 202.50.253.81
-  type: ss
-  udp: true
 proxy-groups:
 - name: FREE-PROXY
   proxies:
@@ -147,41 +147,41 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - Alvin9999-newpac/fanqiang
   - Github - junjun266/FreeProxyGo
-  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com1
   - vmess-ws-ipv6 - fanqiang
   - VLESS - FreeProxyGo
-  - SS - FreeProxyGo
   - VLESS - FreeProxyGo1
-  - VLESS - FreeProxyGo2
+  - SS - FreeProxyGo
   - SS - FreeProxyGo1
+  - VLESS - FreeProxyGo2
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
-  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com1
   - vmess-ws-ipv6 - fanqiang
   - VLESS - FreeProxyGo
-  - SS - FreeProxyGo
   - VLESS - FreeProxyGo1
-  - VLESS - FreeProxyGo2
+  - SS - FreeProxyGo
   - SS - FreeProxyGo1
+  - VLESS - FreeProxyGo2
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
-  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
@@ -194,10 +194,10 @@ proxy-groups:
 - name: Github - junjun266/FreeProxyGo
   proxies:
   - VLESS - FreeProxyGo
-  - SS - FreeProxyGo
   - VLESS - FreeProxyGo1
-  - VLESS - FreeProxyGo2
+  - SS - FreeProxyGo
   - SS - FreeProxyGo1
+  - VLESS - FreeProxyGo2
   type: select
 rule-providers: {}
 rules:
