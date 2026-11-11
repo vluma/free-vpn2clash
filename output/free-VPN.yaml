@@ -18,7 +18,7 @@ proxies:
   name: end-gfw.com - raw.githubusercontent.com
   network: ws
   port: 6868
-  server: 43.203.241.196
+  server: 54.199.8.75
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -29,11 +29,19 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
+- name: Trojan - raw.githubusercontent.com
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6668
+  server: 54.199.8.75
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
+  udp: false
 - cipher: chacha20-ietf-poly1305
   name: SS - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6666
-  server: 43.203.241.196
+  server: 54.199.8.75
   type: ss
   udp: true
 - alterId: 0
@@ -41,7 +49,7 @@ proxies:
   name: end-gfw.com - raw.githubusercontent.com1
   network: ws
   port: 6868
-  server: 54.199.8.75
+  server: 43.203.241.196
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -56,21 +64,13 @@ proxies:
   name: SS - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6666
-  server: 54.199.8.75
+  server: 43.203.241.196
   type: ss
   udp: true
-- name: Trojan - raw.githubusercontent.com
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
-  server: 43.203.241.196
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
 - name: Trojan - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
-  server: 54.199.8.75
+  server: 43.203.241.196
   servername: baidu.com#end-gfw.com
   skip-cert-verify: false
   type: trojan
@@ -79,50 +79,77 @@ proxies:
   name: SS - FreeProxyGo
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   port: 19999
-  server: 202.50.253.36
+  server: 202.50.253.27
   type: ss
   udp: true
-- cipher: aes-256-gcm
-  name: SS - FreeProxyGo1
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  port: 19999
-  server: 202.50.253.63
-  type: ss
-  udp: true
-- cipher: aes-256-gcm
-  name: SS - FreeProxyGo2
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  port: 19999
-  server: 202.50.253.90
-  type: ss
-  udp: true
-- name: VLESS - FreeProxyGo
-  network: ws
-  port: 2087
-  server: 8.35.211.73
-  servername: d39333476.pages.dev
+- client-fingerprint: firefox
+  name: VLESS - FreeProxyGo
+  network: tcp
+  port: 443
+  reality-opts:
+    public-key: 1vSZjvhZO01oAEH3b7eebR1qF5dLU1Dq2E7xu8pwGSs
+    short-id: 428ef87fd47a3a32
+  server: 179.43.166.190
+  servername: perevodchiki.su
   skip-cert-verify: true
   tls: true
   type: vless
   udp: false
-  uuid: 9f534ac4-3c58-4a16-8b74-13dff09a0cf1
+  uuid: 90157e25-cee1-4217-921e-91f300bc1a24
+- name: Trojan - FreeProxyGo
+  network: ws
+  password: f426d3c9-fb43-43c0-868b-898dfa451a74
+  port: 443
+  server: 121.127.33.130
+  servername: likejennie.pages.dev
+  skip-cert-verify: false
+  type: trojan
+  udp: false
   ws-opts:
-    headers:
-      Host: d39333476.pages.dev
-- client-fingerprint: chrome
+    path: '%2F#(ProxyGo免费节点分享)'
+- client-fingerprint: firefox
   name: VLESS - FreeProxyGo1
   network: tcp
-  port: 48312
+  port: 443
   reality-opts:
-    public-key: d9eM_jy8ztZrOf3DMq1m55VQSo7bnKcG1dRnO9ktJ2Y
-    short-id: 902c315efc
-  server: tunell2027.crackerbinam.org
-  servername: www.cloudflare.com
+    public-key: 1vSZjvhZO01oAEH3b7eebR1qF5dLU1Dq2E7xu8pwGSs
+    short-id: 428ef87fd47a3a32
+  server: 46.19.138.214
+  servername: perevodchiki.su
   skip-cert-verify: true
   tls: true
   type: vless
   udp: false
-  uuid: f47057d5-120d-4b42-b6d6-30469aef6813
+  uuid: 90157e25-cee1-4217-921e-91f300bc1a24
+- alterId: 0
+  cipher: auto
+  name: (ProxyGo免费节点分享) - FreeProxyGo
+  network: ws
+  port: 8443
+  server: 104.21.57.84
+  skip-cert-verify: true
+  tls: false
+  type: vmess
+  udp: true
+  uuid: 60441548-b68e-43b2-8191-e3b884be4b3c
+  ws-opts:
+    headers:
+      Host: v2ray1.dozapp.xyz
+    path: /lMnsZUN4/
+- client-fingerprint: chrome
+  name: VLESS - FreeProxyGo2
+  network: tcp
+  port: 443
+  reality-opts:
+    public-key: 1vSZjvhZO01oAEH3b7eebR1qF5dLU1Dq2E7xu8pwGSs
+    short-id: 428ef87fd47a3a32
+  server: prvtch.titun.su
+  servername: perevodchiki.su
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 90157e25-cee1-4217-921e-91f300bc1a24
 proxy-groups:
 - name: FREE-PROXY
   proxies:
@@ -130,50 +157,53 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - junjun266/FreeProxyGo
   - end-gfw.com - raw.githubusercontent.com
+  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com1
-  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
   - SS - FreeProxyGo
-  - SS - FreeProxyGo1
-  - SS - FreeProxyGo2
   - VLESS - FreeProxyGo
+  - Trojan - FreeProxyGo
   - VLESS - FreeProxyGo1
+  - (ProxyGo免费节点分享) - FreeProxyGo
+  - VLESS - FreeProxyGo2
   type: select
 - interval: 300
   name: AUTO-SWITCH
   proxies:
   - end-gfw.com - raw.githubusercontent.com
+  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com1
-  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
   - SS - FreeProxyGo
-  - SS - FreeProxyGo1
-  - SS - FreeProxyGo2
   - VLESS - FreeProxyGo
+  - Trojan - FreeProxyGo
   - VLESS - FreeProxyGo1
+  - (ProxyGo免费节点分享) - FreeProxyGo
+  - VLESS - FreeProxyGo2
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: raw.githubusercontent.com
   proxies:
   - end-gfw.com - raw.githubusercontent.com
+  - Trojan - raw.githubusercontent.com
   - SS - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com1
-  - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
   type: select
 - name: Github - junjun266/FreeProxyGo
   proxies:
   - SS - FreeProxyGo
-  - SS - FreeProxyGo1
-  - SS - FreeProxyGo2
   - VLESS - FreeProxyGo
+  - Trojan - FreeProxyGo
   - VLESS - FreeProxyGo1
+  - (ProxyGo免费节点分享) - FreeProxyGo
+  - VLESS - FreeProxyGo2
   type: select
 rule-providers: {}
 rules:
