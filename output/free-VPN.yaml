@@ -17,29 +17,20 @@ proxies:
   name: SS - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6666
+  server: 54.199.8.75
+  type: ss
+  udp: true
+- cipher: chacha20-ietf-poly1305
+  name: SS - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6666
   server: 43.203.241.196
   type: ss
   udp: true
-- alterId: 0
-  cipher: auto
-  name: end-gfw.com - raw.githubusercontent.com
-  network: ws
-  port: 6868
-  server: 54.199.8.75
-  servername: baidu.com
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  ws-opts:
-    headers:
-      Host: end-gfw.com
-    path: /
 - name: Trojan - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
-  server: 43.203.241.196
+  server: 54.199.8.75
   servername: baidu.com#end-gfw.com
   skip-cert-verify: false
   type: trojan
@@ -47,14 +38,14 @@ proxies:
 - name: Trojan - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
-  server: 54.199.8.75
+  server: 43.203.241.196
   servername: baidu.com#end-gfw.com
   skip-cert-verify: false
   type: trojan
   udp: false
 - alterId: 0
   cipher: auto
-  name: end-gfw.com - raw.githubusercontent.com1
+  name: end-gfw.com - raw.githubusercontent.com
   network: ws
   port: 6868
   server: 43.203.241.196
@@ -68,39 +59,48 @@ proxies:
     headers:
       Host: end-gfw.com
     path: /
-- cipher: chacha20-ietf-poly1305
-  name: SS - raw.githubusercontent.com1
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6666
+- alterId: 0
+  cipher: auto
+  name: end-gfw.com - raw.githubusercontent.com1
+  network: ws
+  port: 6868
   server: 54.199.8.75
-  type: ss
+  servername: baidu.com
+  skip-cert-verify: true
+  tls: false
+  type: vmess
   udp: true
+  uuid: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  ws-opts:
+    headers:
+      Host: end-gfw.com
+    path: /
 - cipher: aes-256-gcm
   name: SS - FreeProxyGo
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  port: 19999
-  server: 202.50.253.90
-  type: ss
-  udp: true
-- cipher: aes-256-gcm
-  name: SS - FreeProxyGo1
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  port: 19999
-  server: 202.50.253.99
-  type: ss
-  udp: true
-- cipher: aes-256-gcm
-  name: SS - FreeProxyGo2
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   port: 19999
   server: 202.50.253.54
   type: ss
   udp: true
 - cipher: aes-256-gcm
-  name: SS - FreeProxyGo3
+  name: SS - FreeProxyGo1
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   port: 19999
   server: 202.50.253.63
+  type: ss
+  udp: true
+- cipher: aes-256-gcm
+  name: SS - FreeProxyGo2
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  port: 19999
+  server: 202.50.253.99
+  type: ss
+  udp: true
+- cipher: aes-256-gcm
+  name: SS - FreeProxyGo3
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  port: 19999
+  server: 202.50.253.90
   type: ss
   udp: true
 - cipher: aes-256-gcm
@@ -124,11 +124,11 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - junjun266/FreeProxyGo
   - SS - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
-  - SS - raw.githubusercontent.com1
   - SS - FreeProxyGo
   - SS - FreeProxyGo1
   - SS - FreeProxyGo2
@@ -140,11 +140,11 @@ proxy-groups:
   name: AUTO-SWITCH
   proxies:
   - SS - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
-  - SS - raw.githubusercontent.com1
   - SS - FreeProxyGo
   - SS - FreeProxyGo1
   - SS - FreeProxyGo2
@@ -157,11 +157,11 @@ proxy-groups:
 - name: raw.githubusercontent.com
   proxies:
   - SS - raw.githubusercontent.com
-  - end-gfw.com - raw.githubusercontent.com
+  - SS - raw.githubusercontent.com1
   - Trojan - raw.githubusercontent.com
   - Trojan - raw.githubusercontent.com1
+  - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
-  - SS - raw.githubusercontent.com1
   type: select
 - name: Github - junjun266/FreeProxyGo
   proxies:
