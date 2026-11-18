@@ -17,14 +17,14 @@ proxies:
   name: SS - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6666
-  server: 54.199.8.75
+  server: 43.203.241.196
   type: ss
   udp: true
 - cipher: chacha20-ietf-poly1305
   name: SS - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6666
-  server: 43.203.241.196
+  server: 54.199.8.75
   type: ss
   udp: true
 - name: Trojan - raw.githubusercontent.com
@@ -48,7 +48,7 @@ proxies:
   name: end-gfw.com - raw.githubusercontent.com
   network: ws
   port: 6868
-  server: 43.203.241.196
+  server: 54.199.8.75
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -64,7 +64,7 @@ proxies:
   name: end-gfw.com - raw.githubusercontent.com1
   network: ws
   port: 6868
-  server: 54.199.8.75
+  server: 43.203.241.196
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -79,42 +79,42 @@ proxies:
   name: SS - FreeProxyGo
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   port: 19999
-  server: 202.50.253.54
+  server: 202.50.253.90
   type: ss
   udp: true
 - cipher: aes-256-gcm
   name: SS - FreeProxyGo1
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   port: 19999
-  server: 202.50.253.63
+  server: 202.50.253.54
   type: ss
   udp: true
 - cipher: aes-256-gcm
   name: SS - FreeProxyGo2
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   port: 19999
-  server: 202.50.253.99
+  server: 202.50.253.45
   type: ss
   udp: true
 - cipher: aes-256-gcm
   name: SS - FreeProxyGo3
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   port: 19999
-  server: 202.50.253.90
+  server: 202.50.253.36
   type: ss
   udp: true
 - cipher: aes-256-gcm
   name: SS - FreeProxyGo4
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   port: 19999
-  server: 202.50.253.36
+  server: 202.50.253.99
   type: ss
   udp: true
 - cipher: aes-256-gcm
   name: SS - FreeProxyGo5
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   port: 19999
-  server: 202.50.253.45
+  server: 202.50.253.63
   type: ss
   udp: true
 proxy-groups:
