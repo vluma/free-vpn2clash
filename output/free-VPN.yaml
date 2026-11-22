@@ -16,14 +16,6 @@ proxies:
 - name: Trojan - raw.githubusercontent.com
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
   port: 6668
-  server: 43.203.241.196
-  servername: baidu.com#end-gfw.com
-  skip-cert-verify: false
-  type: trojan
-  udp: false
-- name: Trojan - raw.githubusercontent.com1
-  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
-  port: 6668
   server: 54.199.8.75
   servername: baidu.com#end-gfw.com
   skip-cert-verify: false
@@ -34,7 +26,7 @@ proxies:
   name: end-gfw.com - raw.githubusercontent.com
   network: ws
   port: 6868
-  server: 43.203.241.196
+  server: 54.199.8.75
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -50,7 +42,7 @@ proxies:
   name: end-gfw.com - raw.githubusercontent.com1
   network: ws
   port: 6868
-  server: 54.199.8.75
+  server: 43.203.241.196
   servername: baidu.com
   skip-cert-verify: true
   tls: false
@@ -68,6 +60,14 @@ proxies:
   server: 54.199.8.75
   type: ss
   udp: true
+- name: Trojan - raw.githubusercontent.com1
+  password: 0b4bee77-b37c-42ea-b01e-572aa3422195
+  port: 6668
+  server: 43.203.241.196
+  servername: baidu.com#end-gfw.com
+  skip-cert-verify: false
+  type: trojan
+  udp: false
 - cipher: chacha20-ietf-poly1305
   name: SS - raw.githubusercontent.com1
   password: 0b4bee77-b37c-42ea-b01e-572aa3422195
@@ -75,12 +75,23 @@ proxies:
   server: 43.203.241.196
   type: ss
   udp: true
+- name: VLESS - FreeProxyGo
+  network: ws
+  port: 443
+  server: xray-dmr3b3hy-calm-maple-7.cloady.io
+  servername: xray-dmr3b3hy-calm-maple-7.cloady.io
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 06a5afa1-2bbc-a5d1-1770-becd1089c636
+  ws-opts: {}
 - client-fingerprint: chrome
   http-opts:
     method: GET
     path:
-    - '%2F#(ProxyGo免费节点分享)'
-  name: VLESS - FreeProxyGo
+    - '%2F'
+  name: VLESS - FreeProxyGo1
   network: http
   port: 48982
   reality-opts:
@@ -92,84 +103,60 @@ proxies:
   type: vless
   udp: false
   uuid: ea1bee20-9217-42c0-acee-d12bf0c42602
-- client-fingerprint: firefox
-  name: VLESS - FreeProxyGo1
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: ZSmetD4e9QG5CiXhniHg5HJB68L4kwbgAkJmMHtVwEE
-    short-id: 42426c882c5fcd41
-  server: 196.196.149.81
-  servername: 7aa271t.es1.h1clayd.click
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 4201786b-d99b-4147-a5f0-20d47acddb81
 - client-fingerprint: chrome
   name: VLESS - FreeProxyGo2
   network: tcp
   port: 443
   reality-opts:
-    public-key: VZS639V1i-35g7VXb9EoTYL-Srm7858sxcvFAunncmA
-    short-id: 8d0d0679f42ffd98
-  server: 136.148.208.221
-  servername: 8a2e72t.nl20.h1clayd.shop
+    public-key: kpQWnVk3fEJXfPGFsMerUoPV_ZqUJUJFRnF1FvKyhRY
+    short-id: 7a7d19880a9ee786
+  server: 83.141.92.168
+  servername: sladovna.russianpiwo.fun
   skip-cert-verify: true
   tls: true
   type: vless
   udp: false
-  uuid: 4201786b-d99b-4147-a5f0-20d47acddb81
-- client-fingerprint: firefox
-  name: VLESS - FreeProxyGo3
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: l-GzBDuNuhnjxoRlZqKvT7jAt_sbVAxhGFsAttO5kXs
-    short-id: 361d0dd59c70516f
-  server: 196.196.148.85
-  servername: 5d0319t.nl7.h1clayd.click
+  uuid: a7595994-695d-484e-bfcb-e9fbb73cfa39
+- name: VLESS - FreeProxyGo3
+  network: ws
+  port: 2053
+  server: 104.16.243.122
+  servername: j4mr-d9oj1at9i-8kuayba9kocwx7uzn.pages.dev
   skip-cert-verify: true
   tls: true
   type: vless
   udp: false
-  uuid: cda0862a-0f87-4be9-8ed8-1d0c9e382839
-- client-fingerprint: firefox
-  http-opts:
+  uuid: 51a0af77-a60c-4d9b-81a4-f50e1b38d90b
+  ws-opts:
+    headers:
+      Host: j4mr-d9oj1at9i-8kuayba9kocwx7uzn.pages.dev
+- name: VLESS - FreeProxyGo4
+  network: ws
+  port: 2053
+  server: 104.16.244.34
+  servername: cffq.pages.dev
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  udp: false
+  uuid: 97514cec-cf70-42b1-9743-3f89122adc8e
+  ws-opts:
+    headers:
+      Host: cffq.pages.dev
+- http-opts:
     method: GET
     path:
-    - '%2F#(ProxyGo免费节点分享)'
-  name: VLESS - FreeProxyGo4
-  network: http
-  port: 443
-  reality-opts:
-    public-key: 4mgkA2kT_Im0rkGi-fVSUU5CyF5xvMVcjA6MXBSEDAA
-    short-id: d5501b156391e01d
-  server: 196.199.122.2
-  servername: 38917fx.es1.h1clayd.click
-  skip-cert-verify: true
-  tls: true
-  type: vless
-  udp: false
-  uuid: 4201786b-d99b-4147-a5f0-20d47acddb81
-- client-fingerprint: firefox
-  http-opts:
-    method: GET
-    path:
-    - '%2Fd20896a4ce30#(ProxyGo免费节点分享)'
+    - '%2Fes'
   name: VLESS - FreeProxyGo5
   network: http
   port: 443
-  reality-opts:
-    public-key: jIRVNEf9SpuWP2nJrAbHGGIUnfzOmwZZlrNGw-Y-O2Q
-    short-id: 2d2598d60447a967
-  server: 196.245.52.183
-  servername: e60833x.nl7.h1clayd.click
+  server: api.ferrin.uk
+  servername: 7d1a74fd.ferrin.uk
   skip-cert-verify: true
   tls: true
   type: vless
   udp: false
-  uuid: cda0862a-0f87-4be9-8ed8-1d0c9e382839
+  uuid: 7d1a74fd-8a38-4a29-863f-5da53a9e557e
 proxy-groups:
 - name: FREE-PROXY
   proxies:
@@ -177,10 +164,10 @@ proxy-groups:
   - raw.githubusercontent.com
   - Github - junjun266/FreeProxyGo
   - Trojan - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com
+  - Trojan - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com1
   - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
@@ -193,10 +180,10 @@ proxy-groups:
   name: AUTO-SWITCH
   proxies:
   - Trojan - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com
+  - Trojan - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com1
   - VLESS - FreeProxyGo
   - VLESS - FreeProxyGo1
@@ -210,10 +197,10 @@ proxy-groups:
 - name: raw.githubusercontent.com
   proxies:
   - Trojan - raw.githubusercontent.com
-  - Trojan - raw.githubusercontent.com1
   - end-gfw.com - raw.githubusercontent.com
   - end-gfw.com - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com
+  - Trojan - raw.githubusercontent.com1
   - SS - raw.githubusercontent.com1
   type: select
 - name: Github - junjun266/FreeProxyGo
